@@ -1,0 +1,16 @@
+﻿@page
+@model WebApplication1.Pages.WelcomeModel
+@{
+    ViewData["Title"] = "Welcome";
+
+    var partOfDay = "morning";    
+    if(DateTime.Now.Hour > 12){
+        partOfDay= "afternoon";    
+    }
+    if(DateTime.Now.Hour > 18){
+        partOfDay= "evening";    
+    }
+
+}
+<h1>Welcome!</h1>
+<p>It is @partOfDay on @DateTime.Now.ToString("dddd, dd MMMM")</p> 
