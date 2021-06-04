@@ -1,0 +1,20 @@
+﻿@page
+@model FunctionsBlockExample.Pages.WelcomeModel
+@{
+}
+@functions{
+    string GetPartOfDay(DateTime dt)
+    {
+        var partOfDay = "morning";
+        if (dt.Hour > 12)
+        {
+            partOfDay = "afternoon";
+        }
+        if (dt.Hour > 18)
+        {
+            partOfDay = "evening";
+        }
+        return partOfDay; 
+   }
+}
+<p>It is @GetPartOfDay(DateTime.Now)</p>
