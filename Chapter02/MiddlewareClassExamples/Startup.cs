@@ -29,7 +29,7 @@ namespace MiddlewareClassExamples
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseIpAddressMiddleware();
+           
 
             if (env.IsDevelopment())
             {
@@ -44,7 +44,9 @@ namespace MiddlewareClassExamples
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            
+            app.UseIpAddressMiddleware();
+            
             app.UseRouting();
 
             app.UseAuthorization();
