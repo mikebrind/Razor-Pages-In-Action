@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container">
+        <header>Header</header>
+        <nav>Navigation</nav>
+        <div class="row">
+            <div class="col-3">
+                <div>Deal Of The Day Widget 1</div>
+                @if (IsSectionDefined("ThingsToDoWidget"))
+                {
+                    @await RenderSectionAsync("ThingsToDoWidget")
+                }
+                else
+                {
+                    <p>ThingsToDoWidget default content</p>
+                }
+            </div>
+            <div class="col-9">
+                @RenderBody()
+            </div>
+        </div>
+        <footer>Footer</footer>
+    </div>
+</body>
+</html>
