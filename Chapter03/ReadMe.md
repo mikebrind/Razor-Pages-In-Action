@@ -7,6 +7,7 @@ This chapter covers
 - Understanding the PageModel as a controller and view model
 - Working with handler methods and IActionResult
 
+## Downloads
 
 - [Use a Razor functions block](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter03/FunctionsBlockExample)
 - [Control blocks in Razor](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter03/ControlBlockExamples)
