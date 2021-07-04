@@ -24,12 +24,14 @@ namespace CityBreaks
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages().AddRazorPagesOptions(options => {
-                options.Conventions.AddPageRoute("/Index", "FindMe");
+                //options.Conventions.AddPageRoute("/Index", "FindMe");
                 options.Conventions.Add(new CultureTemplatePageRouteModelConvention());
                 options.Conventions.Add(new PageRouteTransformerConvention(new KebabPageRouteParameterTransformer()));
             });
             services.Configure<RouteOptions>(options =>
             {
+                options.LowercaseUrls = true;
+                options.LowercaseQueryStrings = true;
                 options.ConstraintMap.Add("city", typeof(CityRouteConstraint));
                 options.ConstraintMap.Add("slug", typeof(SlugParameterTransformer));
             });
