@@ -1,0 +1,7 @@
+﻿@page "{cityName}/{rating?}"
+@model CityBreaks.Pages.CityModel
+@{
+}
+<h3>@Model.CityName Details</h3>
+<p>Minimum Rating: @Model.Rating.GetValueOrDefault()</p>
+
