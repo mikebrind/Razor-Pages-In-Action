@@ -1,4 +1,5 @@
 # Chapter 3
+## Working with Razor pages
 
 This chapter covers
 - Generating HTML with Razor templates
