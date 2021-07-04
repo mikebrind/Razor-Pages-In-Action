@@ -14,3 +14,7 @@ This chapter covers
 - [Route Parameter Defaults](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter04/RouteParameters2)
 - [Optional Route Parameter](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter04/RouteParameters3)
 - [Route Parameter Constraints](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter04/RouteParameters4)
+- [Custom Route Constraints](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter04/CustomRouteConstraint)
+- [Page Route Model Convention](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter04/PageRouteModelConvention)
+- [Page Route Parameter Transformer](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter04/PageRouteTransformerConvention)
+- [Route Parameter Transformer](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter04/RouteParameterTransformer)
