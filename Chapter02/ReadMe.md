@@ -1,4 +1,5 @@
 # Chapter 2
+## Your first application
 
 This chapter covers
 - Creating a Razor Pages application
