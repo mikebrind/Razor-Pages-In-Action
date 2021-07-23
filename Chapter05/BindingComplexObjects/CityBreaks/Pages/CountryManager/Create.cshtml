@@ -2,3 +2,27 @@
 @model CityBreaks.Pages.CountryManager.CreateModel
 @{
 }
+
+<h4>Create Country</h4>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="get">
+            <div class="form-group">
+                <label for="Input.CountryName" class="control-label">Name</label>
+                <input name="Input.CountryName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="Input.CountryCode" class="control-label">ISO-3166-1 Code</label>
+                <input name="Input.CountryCode" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@if(Model.Country != null){
+    <p>You submitted @Model.Country.CountryName 
+    <img src="/images/flags/@(Model.Country.CountryCode).png" /></p>
+}
