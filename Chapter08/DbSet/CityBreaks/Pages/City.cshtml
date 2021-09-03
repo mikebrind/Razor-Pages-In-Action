@@ -1,0 +1,28 @@
+﻿@page 
+@model CityBreaks.Pages.CityModel
+<h4>Select Cities</h4>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                @foreach(var city in Model.Cities)
+                {
+                    <div><input type="checkbox" name="SelectedCities" value="@city.Id"/> @city.Name</div>
+                }
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Select" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@if(Model.SelectedCities.Any())
+{
+    <p>Number of cities selected: @Model.SelectedCities.Count()</p> 
+    <ul>
+    @foreach(var city in Model.Cities.Where(c => Model.SelectedCities.Contains(c.Id)))
+    {
+        <li>@city.Name</li>
+    }
+    </ul>
+}

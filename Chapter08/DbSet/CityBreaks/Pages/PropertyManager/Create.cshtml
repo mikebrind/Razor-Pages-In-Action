@@ -1,0 +1,50 @@
+﻿@page
+@model CityBreaks.Pages.PropertyManager.CreateModel
+@{
+    ViewData["Title"] = "Create Property";
+}
+
+<p>@Model.Message</p>
+
+<form method="post">
+    <div class="mb-3">
+        <label class="form-label" asp-for="SelectedCity"></label>
+        <select class="form-control" asp-for="SelectedCity" asp-items="Model.Cities">
+            <option></option>>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Rating"></label>
+        <ul class="list-group border-0">
+        @foreach(var option in Html.GetEnumSelectList<Rating>())
+        {
+            <li class="list-group-item p-0 border-0">
+                <input asp-for="Rating" type="radio" id="rating-@option.Value" value="@option.Value"> @option.Text
+            </li>
+        }
+        </ul>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="MaxNumberOfGuests"></label>
+        <input class="form-control" asp-for="MaxNumberOfGuests" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="DayRate"></label>
+        <input class="form-control" asp-for="DayRate" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="AvailableFrom"></label>
+        <input class="form-control" asp-for="AvailableFrom" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="SmokingPermitted"></label>
+        <input asp-for="SmokingPermitted" />
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-primary">Submit</button>
+    </div>
+</form>

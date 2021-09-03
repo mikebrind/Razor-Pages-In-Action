@@ -52,18 +52,6 @@ namespace CityBreaks.Pages.PropertyManager
 
         private SelectList GetCityOptions()
         {
-            //var cities = new List<City>
-            //{
-            //    new City{ Id = 1, Name = "Barcelona" , CountryName = "Spain" },
-            //    new City{ Id = 2, Name = "Cadiz" , CountryName = "Spain" },
-            //    new City{ Id = 3, Name = "London", CountryName = "United Kingdom" },
-            //    new City{ Id = 4, Name = "Madrid" , CountryName = "Spain" },
-            //    new City{ Id = 5, Name = "Rome", CountryName = "Italy" },
-            //    new City{ Id = 6, Name = "Venice", CountryName = "Italy" },
-            //    new City{ Id = 7, Name = "York" , CountryName = "United Kingdom" },
-            //};
-            //return new SelectList(cities.OrderBy(c=> c.CountryName), nameof(City.Id), nameof(City.Name), null, nameof(City.CountryName));
-
             var cities = new List<City>
             {
                 new City{ Id = 1, Name = "London", Country = new Country{ CountryName = "United Kingdom"} },
