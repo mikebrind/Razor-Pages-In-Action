@@ -11,6 +11,8 @@ namespace CityBreaks.Services
             return Task.FromResult(Cities);
         }
 
+        public Task<City> GetCityByName(string name) => throw new NotImplementedException();
+
         private readonly List<City> Cities = new()
         {
             new City

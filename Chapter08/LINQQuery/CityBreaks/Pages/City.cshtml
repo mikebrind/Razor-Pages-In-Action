@@ -1,28 +1,22 @@
-﻿@page 
+﻿@page "{name}"
 @model CityBreaks.Pages.CityModel
-<h4>Select Cities</h4>
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div class="form-group">
-                @foreach(var city in Model.Cities)
-                {
-                    <div><input type="checkbox" name="SelectedCities" value="@city.Id"/> @city.Name</div>
-                }
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Select" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-@if(Model.SelectedCities.Any())
+@{
+	ViewData["Title"] = $"{Model.City?.Name} Details";
+}
+<h3>@Model.City.Name</h3>
+@foreach (var property in Model.City.Properties)
 {
-    <p>Number of cities selected: @Model.SelectedCities.Count()</p> 
-    <ul>
-    @foreach(var city in Model.Cities.Where(c => Model.SelectedCities.Contains(c.Id)))
-    {
-        <li>@city.Name</li>
-    }
-    </ul>
+	<div class="mb-3">
+		<h5>@property.Name</h5>
+		<p class="mb-1">@property.Address</p>
+		<i class="fas fa-euro-sign text-muted"></i> @property.DayRate.ToString("F2")<br>
+		@if (!property.SmokingPermitted)
+		{
+			<i class="fas fa-smoking-ban text-danger"></i>
+		}
+		@for (var i = 1; i <= property.MaxNumberOfGuests; i++)
+		{
+			<i class="fas fa-bed text-info"></i>
+		}
+	</div>
 }

@@ -1,24 +1,30 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CityBreaks.Models;
+using CityBreaks.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace CityBreaks.Pages
+namespace CityBreaks.Pages;
+
+public class CityModel : PageModel
 {
-    public class CityModel : PageModel
+    private readonly ICityService _cityService;
+    public CityModel(ICityService cityService)
     {
-        [BindProperty]
-        public List<int> SelectedCities { get; set; } = new List<int>();
-        public List<City> Cities = new List<City>
+        _cityService = cityService;
+    }
+
+    [BindProperty(SupportsGet = true)]
+    public string Name { get; set; }
+    public City City { get; set; }
+
+    public async Task<IActionResult> OnGetAsync()
+    {
+        City = await _cityService.GetCityByName(Name);
+        if(City == null)
         {
-            new City{ Id = 1, Name = "London"},
-            new City{ Id = 2, Name = "Paris" },
-            new City{ Id = 3, Name = "New York" },
-            new City{ Id = 4, Name = "Rome" },
-            new City{ Id = 5, Name = "Dublin" }
-        };
+            return NotFound();
+        }
+        return Page();
     }
 }
+
