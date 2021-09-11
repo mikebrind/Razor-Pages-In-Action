@@ -7,7 +7,7 @@ public class CityService : ICityService
 {
     private readonly CityBreaksContext _context;
     public CityService(CityBreaksContext context) => _context = context;
-    public async Task<List<City>> GetCities()
+    public async Task<List<City>> GetAllAsync()
     {
         var cities = _context.Cities
                  .Include(c => c.Country)
@@ -15,7 +15,7 @@ public class CityService : ICityService
         return await cities.ToListAsync();
     }
 
-    public async Task<City> GetCityByName(string name)
+    public async Task<City> GetByNameAsync(string name)
     {
         return await _context.Cities
             .Include(c => c.Country)

@@ -14,6 +14,6 @@ namespace CityBreaks.Pages
         }
 
         public List<City> Cities { get; set; }
-        public async Task OnGetAsync() => Cities = await _cityService.GetCities();
+        public async Task OnGetAsync() => Cities = await _cityService.GetCitiesAsync();
     }
 }

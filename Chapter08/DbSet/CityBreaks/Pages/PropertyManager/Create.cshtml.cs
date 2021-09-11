@@ -59,7 +59,7 @@ public class CreateModel : PageModel
 
         private async Task<SelectList> GetCityOptions()
         {
-            var cities = await _cityService.GetCities();
+            var cities = await _cityService.GetAllAsync();
             return new SelectList(cities, nameof(City.Id), nameof(City.Name), null, "Country.CountryName");
         }
     }

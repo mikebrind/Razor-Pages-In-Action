@@ -2,6 +2,6 @@
 namespace CityBreaks.Services;
 public interface ICityService
 {
-    Task<List<City>> GetCities();
+    Task<List<City>> GetAllAsync();
     Task<City> GetCityByName(string name);
 }

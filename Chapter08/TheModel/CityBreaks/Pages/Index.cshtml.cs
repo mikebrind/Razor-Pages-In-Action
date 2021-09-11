@@ -42,7 +42,7 @@ namespace CityBreaks.Pages
         private async Task<SelectList> GetCityOptions()
         {
             var service = new SimpleCityService();
-            var cities = await service.GetCities();
+            var cities = await service.GetAllAsync();
             return new SelectList(cities, nameof(City.Id), nameof(City.Name));
         }
     }

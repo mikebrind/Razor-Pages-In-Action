@@ -6,7 +6,7 @@ namespace CityBreaks.Services
 {
     public class SimpleCityService : ICityService
     {
-        public Task<List<City>> GetCities()
+        public Task<List<City>> GetAllAsync()
         {
             return Task.FromResult(Cities);
         }
