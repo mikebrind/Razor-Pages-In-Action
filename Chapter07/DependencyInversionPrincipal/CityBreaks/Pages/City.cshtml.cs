@@ -3,13 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CityBreaks.Models;
+using CityBreaks.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CityBreaks.Pages
 {
-    public class CityModel : PageModel
+public class CityModel : PageModel
+{
+    private readonly IEnumerable<IPriceService> _priceServices;
+    public CityModel(IEnumerable<IPriceService> priceServices)
     {
+        _priceServices = priceServices;
+    }
+
+    public void OnGet()
+    {
+        var locationCode = Request.Headers["CF-IPCountry"];
+        var priceService = _priceServices.FirstOrDefault(s=> s.GetLocation() == locationCode);
+    }
+
+
         [BindProperty]
         public List<int> SelectedCities { get; set; } = new List<int>();
         public List<City> Cities = new List<City>

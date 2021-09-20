@@ -39,7 +39,9 @@ namespace CityBreaks
                 options.LowercaseQueryStrings = true;
                 options.ConstraintMap.Add("slug", typeof(SlugParameterTransformer));
             });
+            services.AddScoped<ICityService, SimpleCityService>();
             services.AddScoped<ICityService, CityService>();
+            
             services.AddScoped<IPropertyService, PropertyService>();
             services.AddTransient<LifetimeDemoService>();
             services.AddSingleton<SingletonService>();

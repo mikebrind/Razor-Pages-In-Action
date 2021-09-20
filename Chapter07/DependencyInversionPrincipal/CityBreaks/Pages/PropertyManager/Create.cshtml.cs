@@ -11,13 +11,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CityBreaks.Pages.PropertyManager
 {
-public class CreateModel : PageModel
-{
-    private readonly ICityService _cityService;
-    public CreateModel(ICityService cityService)
+    public class CreateModel : PageModel
     {
-        _cityService = cityService;
-    }
+        private readonly ICityService _cityService;
+        public CreateModel(ICityService cityService)
+        {
+            _cityService = cityService;
+        }
 
         [BindProperty]
         public string Name { get; set; }

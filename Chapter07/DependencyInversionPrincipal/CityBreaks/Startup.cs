@@ -36,6 +36,10 @@ namespace CityBreaks
             services.AddScoped<ICityService, SimpleCityService>();
             services.AddTransient<LifetimeDemoService>();
             services.AddSingleton<SingletonService>();
+            services.AddScoped<IPriceService, FrPriceService>();
+            services.AddScoped<IPriceService, GbPriceService>();
+            services.AddScoped<IPriceService, UsPriceService>();
+            services.AddScoped<IPriceService, DefaultPriceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,12 +1,12 @@
-﻿namespace CityBreaks.Services;
-public class LifetimeDemoService
-{
+﻿using System;
 
-    public LifetimeDemoService()
+namespace CityBreaks.Services {
+    public class LifetimeDemoService
     {
-        Value = Guid.NewGuid();
-          
+        public LifetimeDemoService()
+        {
+            Value = Guid.NewGuid();
+        }
+        public Guid Value { get; }
     }
-    public Guid Value { get; }
-
 }
