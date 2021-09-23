@@ -1,0 +1,22 @@
+﻿@page "{name}"
+@model CityBreaks.Pages.CityModel
+@{
+	ViewData["Title"] = $"{Model.City?.Name} Details";
+}
+<h3>@Model.City.Name</h3>
+@foreach (var property in Model.City.Properties)
+{
+	<div class="mb-3">
+		<h5>@property.Name</h5>
+		<p class="mb-1">@property.Address</p>
+		<i class="fas fa-euro-sign text-muted"></i> @property.DayRate.ToString("F2")<br>
+		@if (!property.SmokingPermitted)
+		{
+			<i class="fas fa-smoking-ban text-danger"></i>
+		}
+		@for (var i = 1; i <= property.MaxNumberOfGuests; i++)
+		{
+			<i class="fas fa-bed text-info"></i>
+		}
+	</div>
+}
