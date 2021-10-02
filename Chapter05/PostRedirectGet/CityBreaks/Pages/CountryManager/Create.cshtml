@@ -8,6 +8,7 @@
 <div class="row">
     <div class="col-md-8">
         <form method="post">
+        <div asp-validation-summary="All" class="text-danger">There are errors</div>
             <div class="form-group">
                 <label for="Input.CountryName" class="control-label">Name</label>
                 <input asp-for="Input.CountryName" class="form-control" />
@@ -24,3 +25,13 @@
         </form>
     </div>
 </div>
+@if (Model.Country != null)
+{
+    <p>
+        You submitted @Model.Country.CountryName
+        <img src="/images/flags/@(Model.Country.CountryCode).png" />
+    </p>
+}
+@section scripts{
+<partial name="_ValidationScriptsPartial" />
+}

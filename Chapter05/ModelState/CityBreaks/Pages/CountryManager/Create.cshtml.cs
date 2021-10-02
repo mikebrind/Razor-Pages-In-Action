@@ -1,8 +1,6 @@
-using CityBreaks.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace CityBreaks.Pages.CountryManager
 {
@@ -17,7 +15,7 @@ namespace CityBreaks.Pages.CountryManager
 
         public IActionResult OnPost()
         {
-            if(!string.IsNullOrWhiteSpace(Input.CountryName) && 
+            if (!string.IsNullOrWhiteSpace(Input.CountryName) &&
                 !string.IsNullOrWhiteSpace(Input.CountryCode) &&
                 Input.CountryName.ToLower().First() != Input.CountryCode.ToLower().First())
             {
@@ -36,7 +34,7 @@ namespace CityBreaks.Pages.CountryManager
         {
             [Required]
             public string CountryName { get; set; }
-            [Required, StringLength(2, MinimumLength = 2, 
+            [Required, StringLength(2, MinimumLength = 2,
                 ErrorMessage = "You must provide a valid two character ISO 3166-1 code")]
             public string CountryCode { get; set; }
         }

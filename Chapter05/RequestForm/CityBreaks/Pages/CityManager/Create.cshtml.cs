@@ -5,7 +5,7 @@ namespace CityBreaks.Pages.CityManager
 {
     public class CreateModel : PageModel
     {
-        public string Message { get; set; } 
+        public string Message { get; set; }
         public void OnPost()
         {
             if (!StringValues.IsNullOrEmpty(Request.Form["cityName"]))
@@ -13,6 +13,5 @@ namespace CityBreaks.Pages.CityManager
                 Message = $"You submitted {Request.Form["cityName"]}";
             }
         }
-
     }
 }

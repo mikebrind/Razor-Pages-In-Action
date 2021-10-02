@@ -7,12 +7,12 @@ namespace CityBreaks.Pages.CountryManager
     public class CreateModel : PageModel
     {
         [BindProperty]
-        public InputModel Input { get; set; }
-        public Country Country { get; set; }
-
+        public InputModel Input { get; set; }    
+        public Country Country { get; set; }   
+        
         public void OnPost()
         {
-            Country = new Country
+            Country = new Country    
             {
                 CountryName = Input.CountryName,
                 CountryCode = Input.CountryCode
@@ -23,7 +23,7 @@ namespace CityBreaks.Pages.CountryManager
         {
             public string CountryName { get; set; }
             public string CountryCode { get; set; }
-
         }
+
     }
 }

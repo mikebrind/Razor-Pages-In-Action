@@ -1,11 +1,7 @@
 using CityBreaks.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace CityBreaks.Pages.CountryManager
 {
@@ -17,7 +13,8 @@ namespace CityBreaks.Pages.CountryManager
 
         public void OnPost()
         {
-            Country = new Country{ 
+            Country = new Country
+            {
                 CountryCode = Input.CountryCode,
                 CountryName = Input.CountryName
             };
@@ -27,7 +24,7 @@ namespace CityBreaks.Pages.CountryManager
         {
             [Required]
             public string CountryName { get; set; }
-            [Required, StringLength(2, MinimumLength = 2, 
+            [Required, StringLength(2, MinimumLength = 2,
                 ErrorMessage = "You must provide a valid two character ISO 3166-1 code")]
             public string CountryCode { get; set; }
             [Range(typeof(DateTime), "", "")]

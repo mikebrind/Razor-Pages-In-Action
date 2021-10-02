@@ -1,8 +1,6 @@
 using CityBreaks.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CityBreaks.Pages.CountryManager
 {
@@ -22,6 +20,7 @@ namespace CityBreaks.Pages.CountryManager
                     CountryName = x.CountryName
                 }).ToList();
         }
+
         public class InputModel
         {
             public string CountryName { get; set; }
