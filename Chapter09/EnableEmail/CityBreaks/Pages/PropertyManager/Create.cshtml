@@ -1,0 +1,63 @@
+﻿@page
+@model CityBreaks.Pages.PropertyManager.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Property</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Property.Name" class="control-label"></label>
+                <input asp-for="Property.Name" class="form-control" />
+                <span asp-validation-for="Property.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Property.Address" class="control-label"></label>
+                <input asp-for="Property.Address" class="form-control" />
+                <span asp-validation-for="Property.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Property.CityId" class="control-label"></label>
+                <select asp-for="Property.CityId" class ="form-control" asp-items="ViewBag.CityId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Property.MaxNumberOfGuests" class="control-label"></label>
+                <input asp-for="Property.MaxNumberOfGuests" class="form-control" />
+                <span asp-validation-for="Property.MaxNumberOfGuests" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Property.DayRate" class="control-label"></label>
+                <input asp-for="Property.DayRate" class="form-control" />
+                <span asp-validation-for="Property.DayRate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Property.SmokingPermitted" /> @Html.DisplayNameFor(model => model.Property.SmokingPermitted)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Property.AvailableFrom" class="control-label"></label>
+                <input asp-for="Property.AvailableFrom" class="form-control" />
+                <span asp-validation-for="Property.AvailableFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
