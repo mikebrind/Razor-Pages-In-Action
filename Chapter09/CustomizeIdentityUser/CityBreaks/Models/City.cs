@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace CityBreaks.Models
+﻿namespace CityBreaks.Models
 {
     public class City
     {
@@ -9,6 +7,6 @@ namespace CityBreaks.Models
         public int CountryId { get; set; }
         public string Photo { get; set; }
         public Country Country { get; set; }
-        public List<Property> Properties {  get; set; }
+        public List<Property> Properties { get; set; }
     }
 }

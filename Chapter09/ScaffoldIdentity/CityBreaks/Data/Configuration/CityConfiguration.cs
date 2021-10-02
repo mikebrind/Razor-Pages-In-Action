@@ -1,7 +1,6 @@
 ﻿using CityBreaks.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Collections.Generic;
 
 namespace CityBreaks.Data.Configuration
 {

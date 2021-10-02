@@ -1,26 +1,58 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using CityBreaks.Data;
+using CityBreaks.ParameterTransformers;
+using CityBreaks.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.EntityFrameworkCore;
 
-namespace CityBreaks
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddRazorPages();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+.AddCookie(options =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+    options.LoginPath = "/login";
+});
+builder.Services.AddDbContext<CityBreaksContext>(options =>
+{
+    options.UseSqlite(builder.Configuration.GetConnectionString("CityBreaksContext"));
+});
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation().AddRazorPagesOptions(options => {
+    options.Conventions.Add(new PageRouteTransformerConvention(new KebabPageRouteParameterTransformer()));
+});
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.LowercaseUrls = true;
+    options.ConstraintMap.Add("slug", typeof(SlugParameterTransformer));
+});
+builder.Services.AddScoped<ICityService, SimpleCityService>();
+builder.Services.AddScoped<ICityService, CityService>();
+
+builder.Services.AddScoped<IPropertyService, PropertyService>();
+builder.Services.AddTransient<LifetimeDemoService>();
+builder.Services.AddSingleton<SingletonService>();
+
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+app.UseAuthentication();
+app.MapRazorPages();
+
+app.Run();

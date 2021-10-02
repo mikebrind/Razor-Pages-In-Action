@@ -2,15 +2,13 @@
 using CityBreaks.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Collections.Generic;
 
-namespace CityBreaks.Data.Configuration
+namespace CityBreaks.Data.Configuration;
+public class PropertyConfiguration : IEntityTypeConfiguration<Property>
 {
-    public class PropertyConfiguration : IEntityTypeConfiguration<Property>
+    public void Configure(EntityTypeBuilder<Property> builder)
     {
-        public void Configure(EntityTypeBuilder<Property> builder)
-        {
-            builder.HasData(new List<Property>
+        builder.HasData(new List<Property>
         {
             new Property { Id = 1, CityId = 10, MaxNumberOfGuests = 1, DayRate = 81.00m, Name = "Hotel Paris", Address = "Rue de Reynard" },
             new Property { Id = 2, CityId = 4, MaxNumberOfGuests = 1, DayRate = 75.00m, Name = "Andersen Hotel", Address = "Vester Volgade" },
@@ -63,6 +61,5 @@ namespace CityBreaks.Data.Configuration
             new Property { Id = 49, CityId = 6, MaxNumberOfGuests = 1, DayRate = 73.00m, Name = "124", Address = "South Bridge" },
             new Property { Id = 50, CityId = 4, MaxNumberOfGuests = 4, DayRate = 75.00m, Name = "Det Lille", Address = "Lavendelstræde" }
         });
-        }
     }
 }

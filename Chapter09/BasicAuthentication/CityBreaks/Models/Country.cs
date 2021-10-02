@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace CityBreaks.Models
+﻿namespace CityBreaks.Models
 {
     public class Country
     {

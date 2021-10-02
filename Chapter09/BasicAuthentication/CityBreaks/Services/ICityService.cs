@@ -1,6 +1,4 @@
 ﻿using CityBreaks.Models;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace CityBreaks.Services
 {

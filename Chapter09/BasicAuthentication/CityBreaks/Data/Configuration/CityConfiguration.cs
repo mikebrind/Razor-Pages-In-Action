@@ -1,16 +1,14 @@
 ﻿using CityBreaks.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Collections.Generic;
 
-namespace CityBreaks.Data.Configuration
+namespace CityBreaks.Data.Configuration;
+public class CityConfiguration : IEntityTypeConfiguration<City>
 {
-    public class CityConfiguration : IEntityTypeConfiguration<City>
+    public void Configure(EntityTypeBuilder<City> builder)
     {
-        public void Configure(EntityTypeBuilder<City> builder)
-        {
-            builder.Property(x => x.Photo).HasColumnName("Image");
-            builder.HasData(new List<City>
+        builder.Property(x => x.Photo).HasColumnName("Image");
+        builder.HasData(new List<City>
         {
             new City { Id = 1, Name = "Amsterdam", CountryId = 5, Photo = "amsterdam.jpg" },
             new City { Id = 2, Name = "Barcelona", CountryId = 7, Photo ="barcelona.jpg" },
@@ -25,6 +23,5 @@ namespace CityBreaks.Data.Configuration
             new City { Id = 11, Name = "Rome", CountryId = 6, Photo ="rome.jpg" },
             new City { Id = 12, Name = "Venice", CountryId = 6, Photo ="venice.jpg" }
         });
-        }
     }
 }

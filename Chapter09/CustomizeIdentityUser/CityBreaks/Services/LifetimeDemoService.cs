@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CityBreaks.Services
+﻿namespace CityBreaks.Services
 {
     public class LifetimeDemoService
     {

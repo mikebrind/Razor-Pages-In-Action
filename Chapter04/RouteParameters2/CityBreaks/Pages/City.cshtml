@@ -1,5 +1,5 @@
-﻿@page "{cityName=Paris}"
+﻿@page "{cityName}"
 @model CityBreaks.Pages.CityModel
 @{
 }
-<h3>@Model.CityName Details</h3>
+<h2>@RouteData.Values["cityName"] Details</h2>
