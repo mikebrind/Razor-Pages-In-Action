@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Routing;
-
-namespace CityBreaks.ParameterTransformers
+﻿namespace CityBreaks.ParameterTransformers
 {
     public class SlugParameterTransformer : IOutboundParameterTransformer
     {

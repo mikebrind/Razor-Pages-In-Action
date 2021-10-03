@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Runtime.Intrinsics.X86;
-using System.Threading.Tasks;
 using CityBreaks.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace CityBreaks.Pages.PropertyManager
 {
@@ -32,7 +27,7 @@ namespace CityBreaks.Pages.PropertyManager
         [Display(Name = "City")]
         public int SelectedCity { get; set; }
         public SelectList Cities { get; set; }
-        [BindProperty, Required]
+        [BindProperty]
         public Rating Rating { get; set; }
         public string Message { get; set; }
         public void OnGet()

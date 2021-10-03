@@ -25,13 +25,7 @@
         </form>
     </div>
 </div>
-@if (Model.Country != null)
-{
-    <p>
-        You submitted @Model.Country.CountryName
-        <img src="/images/flags/@(Model.Country.CountryCode).png" />
-    </p>
-}
+
 @section scripts{
 <partial name="_ValidationScriptsPartial" />
 }

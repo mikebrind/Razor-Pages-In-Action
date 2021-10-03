@@ -2,12 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CityBreaks.Pages
 {
@@ -34,7 +29,7 @@ namespace CityBreaks.Pages
             if (ModelState.IsValid)
             {
                 var cityIds = SelectedCities.Select(x => x.ToString());
-                var cities = GetCityOptions().Where(o => cityIds.Contains(o.Value)).Select(o=>o.Text);
+                var cities = GetCityOptions().Where(o => cityIds.Contains(o.Value)).Select(o => o.Text);
                 Message = $"You selected {string.Join(", ", cities)}";
             }
         }
