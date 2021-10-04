@@ -7,8 +7,6 @@
         {
             _dependency = dependency;
         }
-
         public Guid DependencyValue => _dependency.Value;
-
     }
 }

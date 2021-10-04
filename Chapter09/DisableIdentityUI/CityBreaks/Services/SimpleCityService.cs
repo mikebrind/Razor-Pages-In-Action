@@ -9,26 +9,6 @@ namespace CityBreaks.Services
             return Task.FromResult(Cities);
         }
 
-        public Task<City> GetByNameAsync(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<City> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<City> CreateAsync(City city)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<City> UpdateAsync(City city)
-        {
-            throw new NotImplementedException();
-        }
-
         private readonly List<City> Cities = new()
         {
             new City
@@ -164,5 +144,24 @@ namespace CityBreaks.Services
                 }
             }
         };
+        public Task<City> GetByNameAsync(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<City> GetByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<City> CreateAsync(City city)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<City> UpdateAsync(City city)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

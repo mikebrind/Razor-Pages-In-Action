@@ -21,5 +21,6 @@ namespace CityBreaks.Data
                 .ApplyConfiguration(new CountryConfiguration())
                 .ApplyConfiguration(new PropertyConfiguration());
         }
+
     }
 }

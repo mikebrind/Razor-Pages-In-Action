@@ -16,6 +16,12 @@ namespace CityBreaks.Pages.CountryManager
 
         public IActionResult OnPost()
         {
+            if (!string.IsNullOrWhiteSpace(Input.CountryName) &&
+                !string.IsNullOrWhiteSpace(Input.CountryCode) &&
+                Input.CountryName.ToLower().First() != Input.CountryCode.ToLower().First())
+            {
+                ModelState.AddModelError("Input.CountryName", "The first letters of the name and code must match");
+            }
             if (ModelState.IsValid)
             {
                 CountryCode = Input.CountryCode;
@@ -29,7 +35,7 @@ namespace CityBreaks.Pages.CountryManager
         {
             [Required, CompareFirstLetter(OtherProperty = nameof(CountryCode))]
             public string CountryName { get; set; }
-            [Required, StringLength(2, MinimumLength = 2, 
+            [Required, StringLength(2, MinimumLength = 2,
                 ErrorMessage = "You must provide a valid two character ISO 3166-1 code")]
             public string CountryCode { get; set; }
         }

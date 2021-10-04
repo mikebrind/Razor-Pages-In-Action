@@ -24,7 +24,7 @@ namespace CityBreaks.Pages.CountryManager
                 .Where(x => !string.IsNullOrWhiteSpace(x.CountryCode))
                 .Select(x => new Country
                 {
-                    Id = x.Id, 
+                    Id = x.Id,
                     CountryCode = x.CountryCode,
                     CountryName = x.CountryName
                 }).ToList();

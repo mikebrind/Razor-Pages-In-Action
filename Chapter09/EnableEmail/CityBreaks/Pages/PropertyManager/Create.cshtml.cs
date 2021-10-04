@@ -1,7 +1,12 @@
-﻿using CityBreaks.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using CityBreaks.Data;
+using CityBreaks.Models;
 
 namespace CityBreaks.Pages.PropertyManager
 {
@@ -16,7 +21,7 @@ namespace CityBreaks.Pages.PropertyManager
 
         public IActionResult OnGet()
         {
-        ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Id");
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Id");
             return Page();
         }
 

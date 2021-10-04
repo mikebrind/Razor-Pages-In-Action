@@ -13,7 +13,7 @@ namespace CityBreaks.Pages.PropertyManager
             _propertyService = propertyService;
         }
 
-        public IList<Property> Property { get;set; }
+        public IList<Property> Property { get; set; }
 
         public async Task OnGetAsync()
         {

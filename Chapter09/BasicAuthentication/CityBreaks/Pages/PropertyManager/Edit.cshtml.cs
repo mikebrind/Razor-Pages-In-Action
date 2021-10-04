@@ -1,8 +1,14 @@
-﻿using CityBreaks.Models;
-using CityBreaks.Services;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using CityBreaks.Data;
+using CityBreaks.Models;
+using CityBreaks.Services;
 using System.ComponentModel.DataAnnotations;
 
 namespace CityBreaks.Pages.PropertyManager
@@ -15,7 +21,7 @@ namespace CityBreaks.Pages.PropertyManager
         public EditModel(IPropertyService propertyService, ICityService cityService)
         {
             _propertyService = propertyService;
-            _cityService = cityService; 
+            _cityService = cityService;
         }
 
         public SelectList Cities { get; set; }
@@ -51,7 +57,7 @@ namespace CityBreaks.Pages.PropertyManager
             MaxNumberOfGuests = property.MaxNumberOfGuests;
             Name = property.Name;
             SmokingPermitted = property.SmokingPermitted;
-            
+
             Cities = await GetCityOptions();
             return Page();
         }
@@ -69,7 +75,8 @@ namespace CityBreaks.Pages.PropertyManager
                 Address = Address,
                 AvailableFrom = AvailableFrom,
                 CityId = CityId,
-                DayRate = DayRate,Id = Id,
+                DayRate = DayRate,
+                Id = Id,
                 MaxNumberOfGuests = MaxNumberOfGuests,
                 Name = Name,
                 SmokingPermitted = SmokingPermitted

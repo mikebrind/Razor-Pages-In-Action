@@ -16,7 +16,7 @@ namespace CityBreaks.Services
             {
                 IsBodyHtml = true
             };
-            using var  client = new SmtpClient()
+            using var client = new SmtpClient()
             {
                 Host = "localhost",
                 DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory,

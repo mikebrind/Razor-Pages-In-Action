@@ -11,11 +11,11 @@ namespace CityBreaks.Pages
 
         public IndexModel(ICityService cityService)
         {
-           _cityService = cityService;  
+            _cityService = cityService;
         }
 
         public List<City> Cities { get; set; }
-        public async Task<IActionResult> OnGetAsync() 
+        public async Task<IActionResult> OnGetAsync()
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -23,6 +23,6 @@ namespace CityBreaks.Pages
                 return Page();
             }
             return Challenge();
-        } 
+        }
     }
 }

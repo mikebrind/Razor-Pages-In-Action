@@ -6,7 +6,7 @@ namespace CityBreaks.ValidationAttributes
     public class CompareFirstLetterAttribute : ValidationAttribute
     {
         public string OtherProperty { get; set; }
-       
+
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var otherPropertyInfo = validationContext.ObjectType.GetRuntimeProperty(OtherProperty);

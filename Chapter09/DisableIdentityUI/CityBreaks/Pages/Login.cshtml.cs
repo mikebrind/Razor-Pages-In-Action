@@ -9,7 +9,7 @@ namespace CityBreaks.Pages
 {
     public class LoginModel : PageModel
     {
-        [BindProperty, Display(Name="User name")]
+        [BindProperty, Display(Name = "User name")]
         public string UserName { get; set; }
 
         public async Task OnPostAsync()
