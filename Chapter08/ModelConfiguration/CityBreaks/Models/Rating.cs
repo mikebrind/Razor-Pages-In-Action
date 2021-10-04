@@ -5,7 +5,7 @@ namespace CityBreaks.Models
     public enum Rating
     {
         Unrated,
-        [Display(Name="1 Star")]
+        [Display(Name = "1 Star")]
         OneStar,
         [Display(Name = "2 Star")]
         TwoStar,
@@ -14,6 +14,6 @@ namespace CityBreaks.Models
         [Display(Name = "4 Star")]
         FourStar,
         [Display(Name = "5 Star")]
-        FiveStar      
+        FiveStar
     }
 }

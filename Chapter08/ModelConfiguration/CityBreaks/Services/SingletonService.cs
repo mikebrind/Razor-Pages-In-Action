@@ -1,13 +1,12 @@
-﻿
-namespace CityBreaks.Services;
-public class SingletonService
+﻿namespace CityBreaks.Services
 {
-    private readonly LifetimeDemoService _dependency;
-    public SingletonService(LifetimeDemoService dependency)
+    public class SingletonService
     {
-       _dependency = dependency;
+        private readonly LifetimeDemoService _dependency;
+        public SingletonService(LifetimeDemoService dependency)
+        {
+            _dependency = dependency;
+        }
+        public Guid DependencyValue => _dependency.Value;
     }
-
-    public Guid DependencyValue => _dependency.Value;
-
 }

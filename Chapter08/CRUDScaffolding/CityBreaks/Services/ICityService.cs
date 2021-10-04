@@ -1,7 +1,10 @@
 ﻿using CityBreaks.Models;
-namespace CityBreaks.Services;
-public interface ICityService
+
+namespace CityBreaks.Services
 {
-    Task<List<City>> GetAllAsync();
-    Task<City> GetByNameAsync(string name);
+    public interface ICityService
+    {
+        Task<List<City>> GetAllAsync();
+        Task<City> GetByNameAsync(string name);
+    }
 }

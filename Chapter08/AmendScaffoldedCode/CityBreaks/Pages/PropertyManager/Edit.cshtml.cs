@@ -21,7 +21,7 @@ namespace CityBreaks.Pages.PropertyManager
         public EditModel(IPropertyService propertyService, ICityService cityService)
         {
             _propertyService = propertyService;
-            _cityService = cityService; 
+            _cityService = cityService;
         }
 
         public SelectList Cities { get; set; }
@@ -57,7 +57,7 @@ namespace CityBreaks.Pages.PropertyManager
             MaxNumberOfGuests = property.MaxNumberOfGuests;
             Name = property.Name;
             SmokingPermitted = property.SmokingPermitted;
-            
+
             Cities = await GetCityOptions();
             return Page();
         }
@@ -75,7 +75,8 @@ namespace CityBreaks.Pages.PropertyManager
                 Address = Address,
                 AvailableFrom = AvailableFrom,
                 CityId = CityId,
-                DayRate = DayRate,Id = Id,
+                DayRate = DayRate,
+                Id = Id,
                 MaxNumberOfGuests = MaxNumberOfGuests,
                 Name = Name,
                 SmokingPermitted = SmokingPermitted

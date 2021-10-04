@@ -1,6 +1,5 @@
 using CityBreaks.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System;
 
 namespace CityBreaks.Pages
 {
@@ -17,6 +16,7 @@ namespace CityBreaks.Pages
         public void OnGet()
         {
             Value = _service.DependencyValue;
+
         }
     }
 }

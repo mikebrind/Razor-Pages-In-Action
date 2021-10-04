@@ -7,23 +7,20 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CityBreaks.Data;
 using CityBreaks.Models;
-using CityBreaks.Services;
 
 namespace CityBreaks.Pages.PropertyManager
 {
     public class DeleteModel : PageModel
     {
-        private readonly IPropertyService _propertyService;
+        private readonly CityBreaks.Data.CityBreaksContext _context;
 
-        public DeleteModel(IPropertyService propertyService)
+        public DeleteModel(CityBreaks.Data.CityBreaksContext context)
         {
-            _propertyService = propertyService;
+            _context = context;
         }
 
+        [BindProperty]
         public Property Property { get; set; }
-
-        [BindProperty(SupportsGet = true)]
-        public int Id { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -32,7 +29,8 @@ namespace CityBreaks.Pages.PropertyManager
                 return NotFound();
             }
 
-            Property = await _propertyService.FindAsync(Id);
+            Property = await _context.Properties
+                .Include(p => p.City).FirstOrDefaultAsync(m => m.Id == id);
 
             if (Property == null)
             {
@@ -41,9 +39,21 @@ namespace CityBreaks.Pages.PropertyManager
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
-            await _propertyService.DeleteAsync(Id);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Property = await _context.Properties.FindAsync(id);
+
+            if (Property != null)
+            {
+                _context.Properties.Remove(Property);
+                await _context.SaveChangesAsync();
+            }
+
             return RedirectToPage("./Index");
         }
     }

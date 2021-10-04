@@ -1,26 +1,49 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using CityBreaks.CustomRouteContraints;
+using CityBreaks.PageRouteModelConventions;
+using CityBreaks.ParameterTransformers;
+using CityBreaks.Services;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
-namespace CityBreaks
+var builder = WebApplication.CreateBuilder(args);
+
+// Add builder.Services to the container.
+builder.Services.AddRazorPages(options => {
+    options.Conventions.AddPageRoute("/Index", "FindMe");
+    options.Conventions.Add(new CultureTemplatePageRouteModelConvention());
+    options.Conventions.Add(new PageRouteTransformerConvention(new KebabPageRouteParameterTransformer()));
+});
+builder.Services.Configure<RouteOptions>(options =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+    options.LowercaseUrls = true;
+    options.ConstraintMap.Add("city", typeof(CityRouteConstraint));
+    options.ConstraintMap.Add("slug", typeof(SlugParameterTransformer));
+});
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+builder.Services.AddScoped<ICityService, SimpleCityService>(); 
+builder.Services.AddTransient<LifetimeDemoService>();
+builder.Services.AddSingleton<SingletonService>();
+builder.Services.AddScoped<IPriceService, FrPriceService>();
+builder.Services.AddScoped<IPriceService, GbPriceService>();
+builder.Services.AddScoped<IPriceService, UsPriceService>();
+builder.Services.AddScoped<IPriceService, DefaultPriceService>();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();

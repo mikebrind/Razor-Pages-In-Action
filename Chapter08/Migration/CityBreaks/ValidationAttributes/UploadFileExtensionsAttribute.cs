@@ -1,20 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CityBreaks.ValidationAttributes
 {
     public class UploadFileExtensionsAttribute : ValidationAttribute
     {
-        private IEnumerable<string> allowedExtensions; 
-        public string Extensions { get; set;  }
+        private IEnumerable<string> allowedExtensions;
+        public string Extensions { get; set; }
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             allowedExtensions = Extensions?
-                .Split(new char[] { ',' }, 
+                .Split(new char[] { ',' },
                     StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => x.ToLowerInvariant());
             if (value is IFormFile file && allowedExtensions.Any())

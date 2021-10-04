@@ -1,21 +1,22 @@
 using CityBreaks.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace CityBreaks.Pages;
-
-public class LifetimeDemoModel : PageModel
+namespace CityBreaks.Pages
 {
-    private readonly SingletonService _service;
-    
-    public LifetimeDemoModel(SingletonService service)
+    public class LifetimeDemoModel : PageModel
     {
-        _service = service;
-    }
+        private readonly SingletonService _service;
 
-    public Guid Value { get; set; }
-    public void OnGet()
-    {
-        Value = _service.DependencyValue;
-        
+        public LifetimeDemoModel(SingletonService service)
+        {
+            _service = service;
+        }
+
+        public Guid Value { get; set; }
+        public void OnGet()
+        {
+            Value = _service.DependencyValue;
+
+        }
     }
 }

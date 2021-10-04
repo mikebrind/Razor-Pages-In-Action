@@ -1,7 +1,5 @@
-﻿
-using System;
-
-namespace CityBreaks.Services {
+﻿namespace CityBreaks.Services
+{
     public class SingletonService
     {
         private readonly LifetimeDemoService _dependency;
@@ -9,7 +7,6 @@ namespace CityBreaks.Services {
         {
             _dependency = dependency;
         }
-
         public Guid DependencyValue => _dependency.Value;
     }
 }

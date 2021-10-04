@@ -1,8 +1,6 @@
 ﻿using CityBreaks.Data;
 using CityBreaks.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace CityBreaks.Services
 {

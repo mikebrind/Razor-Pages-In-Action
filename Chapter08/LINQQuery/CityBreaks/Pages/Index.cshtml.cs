@@ -10,7 +10,7 @@ namespace CityBreaks.Pages
 
         public IndexModel(ICityService cityService)
         {
-           _cityService = cityService;  
+            _cityService = cityService;
         }
 
         public List<City> Cities { get; set; }

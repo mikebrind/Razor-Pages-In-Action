@@ -1,24 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 using CityBreaks.Models;
 using CityBreaks.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace CityBreaks.Pages.PropertyManager
 {
     public class CreateModel : PageModel
     {
-        private readonly ICityService _cityService;
-        public CreateModel(ICityService cityService)
-        {
-            _cityService = cityService;
-        }
-
         [BindProperty]
         public string Name { get; set; }
         [BindProperty]
@@ -59,7 +49,8 @@ namespace CityBreaks.Pages.PropertyManager
 
         private async Task<SelectList> GetCityOptions()
         {
-            var cities = await _cityService.GetAllAsync();
+            var service = new SimpleCityService();
+            var cities = await service.GetAllAsync();
             return new SelectList(cities, nameof(City.Id), nameof(City.Name), null, "Country.CountryName");
         }
     }

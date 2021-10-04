@@ -1,8 +1,6 @@
 ﻿using CityBreaks.Models;
 using CityBreaks.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace CityBreaks.Pages
 {
@@ -12,7 +10,7 @@ namespace CityBreaks.Pages
 
         public IndexModel(ICityService cityService)
         {
-           _cityService = cityService;  
+            _cityService = cityService;
         }
 
         public List<City> Cities { get; set; }

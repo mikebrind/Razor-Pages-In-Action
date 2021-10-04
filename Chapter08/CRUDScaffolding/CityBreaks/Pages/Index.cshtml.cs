@@ -10,10 +10,10 @@ namespace CityBreaks.Pages
 
         public IndexModel(ICityService cityService)
         {
-           _cityService = cityService;  
+            _cityService = cityService;
         }
 
         public List<City> Cities { get; set; }
-        public async Task OnGetAsync() => Cities = await _cityService.GetCitiesAsync();
+        public async Task OnGetAsync() => Cities = await _cityService.GetAllAsync();
     }
 }

@@ -13,6 +13,7 @@ builder.Services.AddRazorPages(options => {
 });
 builder.Services.Configure<RouteOptions>(options =>
 {
+    options.LowercaseUrls = true;
     options.ConstraintMap.Add("city", typeof(CityRouteConstraint));
     options.ConstraintMap.Add("slug", typeof(SlugParameterTransformer));
 });

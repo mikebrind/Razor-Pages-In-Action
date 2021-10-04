@@ -19,12 +19,11 @@ public class CityModel : PageModel
 
     public async Task<IActionResult> OnGetAsync()
     {
-        City = await _cityService.GetCityByNameAsync(Name);
-        if(City == null)
+        City = await _cityService.GetByNameAsync(Name);
+        if (City == null)
         {
             return NotFound();
         }
         return Page();
     }
 }
-

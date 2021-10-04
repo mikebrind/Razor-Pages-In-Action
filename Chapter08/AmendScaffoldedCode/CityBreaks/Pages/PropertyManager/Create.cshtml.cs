@@ -21,7 +21,7 @@ namespace CityBreaks.Pages.PropertyManager
 
         public IActionResult OnGet()
         {
-        ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Id");
+            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Id");
             return Page();
         }
 

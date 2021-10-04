@@ -2,7 +2,6 @@ using CityBreaks.Models;
 using CityBreaks.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Threading.Tasks;
 
 namespace CityBreaks.Pages;
 
@@ -21,11 +20,10 @@ public class CityModel : PageModel
     public async Task<IActionResult> OnGetAsync()
     {
         City = await _cityService.GetByNameAsync(Name);
-        if(City == null)
+        if (City == null)
         {
             return NotFound();
         }
         return Page();
     }
 }
-
