@@ -1,0 +1,85 @@
+﻿@page
+@model WebApplication1.Pages.WelcomeModel
+<h3>Listing 3.4</h3>
+@if(DateTime.Now.Hour <= 12)
+{
+    <p>It is morning</p>
+}
+else if (DateTime.Now.Hour <= 18) 
+{ 
+    <p>It is afternoon</p>
+}
+else
+{
+    <p>It is evening</p>
+}
+
+<h3>Listing 3.5</h3>
+@switch (DateTime.Now.Hour)
+{
+    case int _ when DateTime.Now.Hour <= 12:
+        <p>It is morning</p>
+        break;
+    case int _ when DateTime.Now.Hour <= 18:
+        <p>It is afternoon</p>
+        break;
+    default:
+        <p>It is evening</p>
+        break;
+}
+<h3>Listing 3.6</h3>
+@functions{
+    public class City
+    {
+        public string Name { get; set; }
+        public string Country { get; set; }
+    }
+    List<City> cities = new List<City>{
+        new City { Name = "London", Country = "UK" },
+        new City { Name = "Paris", Country = "France" },
+        new City { Name = "Rome", Country = "Italy" } ,
+        new City { Name = "Berlin", Country = "Germany" },
+        new City { Name = "Washington DC", Country = "USA" }
+    };
+}
+
+<ul>
+    @foreach (var city in cities)
+    {
+        <li>@city.Name</li>
+    }
+</ul>
+
+<h3>Listing 3.7</h3>
+@foreach (var city in cities)
+{
+    if (city.Country == "UK")
+    {
+        @:Country:  @city.Country, Name: @city.Name
+    }
+}
+
+<h3>Listing 3.10</h3>
+@{
+    Func<dynamic, object> template = @<ul>
+        @foreach (var city in item)
+        {
+            <li>@city.Name</li>
+        }
+    </ul>;
+}
+@template(cities)
+
+<h3>Listing 3.12</h3>
+@{ 
+   void Template(List<City> cities, string style)    
+    {
+        <ul>    
+        @foreach(var city in cities)
+        {
+            <li class="@(city.Name == "London" ? style : null)">@city.Name</li>
+        }
+        </ul>
+    }
+}
+@{ Template(cities, "active"); } 

@@ -1,0 +1,18 @@
+﻿@page
+@model WebApplication1.Pages.WelcomeModel
+@{
+}
+div class="col">
+    <form method="post" asp-page-handler="Search">    
+        <p>Search</p>
+        <input name="searchTerm" />    
+        <button>Search</button>
+    </form>
+
+    <form method="post" asp-page-handler="Register">  
+        <p>Register</p>
+        <input name="email" />     
+        <button>Register</button>    
+    </form>
+    <p>@Model.Message</p>    
+</div>

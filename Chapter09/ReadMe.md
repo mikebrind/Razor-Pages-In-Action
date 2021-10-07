@@ -4,5 +4,5 @@
 - AddIdentity
 - CustomizeIdentityUser
 - ScaffoldIdentity
-- DisableIdentityUI
 - EnableEmail
+- DisableIdentityUI
