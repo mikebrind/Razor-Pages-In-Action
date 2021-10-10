@@ -42,7 +42,7 @@ builder.Services.AddDefaultIdentity<CityBreaksUser>(options => {
 })
     .AddEntityFrameworkStores<CityBreaksContext>();
 
-builder.Services.AddScoped<ICityService, SimpleCityService>(); 
+builder.Services.AddScoped<ICityService, CityService>(); 
 builder.Services.AddTransient<LifetimeDemoService>();
 builder.Services.AddSingleton<SingletonService>();
 builder.Services.AddScoped<IPriceService, FrPriceService>();
