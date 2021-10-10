@@ -19,12 +19,12 @@ namespace CityBreaks.Pages
         public List<City> Cities { get; set; }
         public async Task<IActionResult> OnGetAsync()
         {
-            //if (User.Identity.IsAuthenticated)
-            //{
+            if (User.Identity.IsAuthenticated)
+            {
                 Cities = await _cityService.GetAllAsync();
                 return Page();
-            //}
-            //return Challenge();
+            }
+            return Challenge();
         }
     }
 }
