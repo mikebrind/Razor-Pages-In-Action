@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CityBreaks.Pages
 {
-    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly ICityService _cityService;
