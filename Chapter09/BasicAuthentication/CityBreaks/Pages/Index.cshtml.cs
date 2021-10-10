@@ -1,10 +1,12 @@
 ﻿using CityBreaks.Models;
 using CityBreaks.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CityBreaks.Pages
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly ICityService _cityService;
@@ -17,12 +19,12 @@ namespace CityBreaks.Pages
         public List<City> Cities { get; set; }
         public async Task<IActionResult> OnGetAsync()
         {
-            if (User.Identity.IsAuthenticated)
-            {
+            //if (User.Identity.IsAuthenticated)
+            //{
                 Cities = await _cityService.GetAllAsync();
                 return Page();
-            }
-            return Challenge();
+            //}
+            //return Challenge();
         }
     }
 }
