@@ -49,9 +49,8 @@ builder.Services.AddScoped<IPriceService, FrPriceService>();
 builder.Services.AddScoped<IPriceService, GbPriceService>();
 builder.Services.AddScoped<IPriceService, UsPriceService>();
 builder.Services.AddScoped<IPriceService, DefaultPriceService>();
+builder.Services.AddScoped<IPropertyService, PropertyService>();
 builder.Services.AddTransient<IEmailSender, EmailService>();
-
-
 
 var app = builder.Build();
 
