@@ -13,11 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add builder.Services to the container.
 builder.Services.AddRazorPages(options => {
-    options.Conventions.AddPageRoute("/Index", "FindMe");
+    //options.Conventions.AddPageRoute("/Index", "FindMe");
     options.Conventions.AuthorizeFolder("/CityManager");
     options.Conventions.AuthorizeFolder("/CountryManager");
     options.Conventions.AuthorizeFolder("/PropertyManager");
-    options.Conventions.AllowAnonymousToPage("/PropertyManager/Index");
     options.Conventions.Add(new CultureTemplatePageRouteModelConvention());
     options.Conventions.Add(new PageRouteTransformerConvention(new KebabPageRouteParameterTransformer()));
 });
@@ -32,7 +31,6 @@ builder.Services.AddDbContext<CityBreaksContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("CityBreaksContext"));
 });
-
 
 builder.Services.AddDefaultIdentity<CityBreaksUser>(options => {
     options.Password.RequireDigit = false;
