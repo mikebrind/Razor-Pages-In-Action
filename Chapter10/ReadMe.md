@@ -2,3 +2,4 @@
 
 - BasicAuthorization
 - Roles
+- Claims
