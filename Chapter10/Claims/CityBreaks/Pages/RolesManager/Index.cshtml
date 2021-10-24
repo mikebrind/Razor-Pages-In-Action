@@ -3,7 +3,8 @@
 @{
 	ViewData["Title"] = "Roles";
 }
-<a asp-page="/RolesManager/Create">New</a>
+<h4>Roles</h4>
+<a class="btn btn-success" asp-page="/RolesManager/Create">New</a>
 @if (Model.Roles.Any())
 {
 	<table class="table">

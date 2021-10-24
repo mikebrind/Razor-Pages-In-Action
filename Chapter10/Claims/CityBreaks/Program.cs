@@ -18,7 +18,7 @@ builder.Services.AddRazorPages(options => {
     options.Conventions.AuthorizeFolder("/CityManager");
     options.Conventions.AuthorizeFolder("/CountryManager");
     options.Conventions.AuthorizeFolder("/PropertyManager");
-    options.Conventions.AuthorizeFolder("/RolesManager", "AdminPolicy");
+    options.Conventions.AuthorizeFolder("/RolesManager", "ViewRolesPolicy");
     options.Conventions.Add(new CultureTemplatePageRouteModelConvention());
     options.Conventions.Add(new PageRouteTransformerConvention(new KebabPageRouteParameterTransformer()));
 });
@@ -47,7 +47,15 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("AdminPolicy", policyBuilder => policyBuilder.RequireRole("Admin"));
+    options.AddPolicy("ViewRolesPolicy", policyBuilder => 
+        policyBuilder.RequireAssertion(context =>
+        {
+            var joiningDateClaim = context.User.FindFirst(c => c.Type == "Joining Date")?.Value;
+            var joiningDate = Convert.ToDateTime(joiningDateClaim);
+            return context.User.HasClaim("Permission", "View Roles") && 
+                joiningDate > DateTime.MinValue &&
+                joiningDate < DateTime.Now.AddMonths(-6);
+    }));
 });
 
 builder.Services.AddScoped<ICityService, CityService>(); 
