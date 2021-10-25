@@ -1,3 +1,4 @@
+using CityBreaks.AuthorizationRequirements;
 using CityBreaks.CustomRouteContraints;
 using CityBreaks.Data;
 using CityBreaks.Models;
@@ -48,14 +49,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("ViewRolesPolicy", policyBuilder => 
-        policyBuilder.RequireAssertion(context =>
-        {
-            var joiningDateClaim = context.User.FindFirst(c => c.Type == "Joining Date")?.Value;
-            var joiningDate = Convert.ToDateTime(joiningDateClaim);
-            return context.User.HasClaim("Permission", "View Roles") && 
-                joiningDate > DateTime.MinValue &&
-                joiningDate < DateTime.Now.AddMonths(-6);
-    }));
+        policyBuilder.AddRequirements(new ViewRolesRequirement(months: -6)));
 });
 
 builder.Services.AddScoped<ICityService, CityService>(); 

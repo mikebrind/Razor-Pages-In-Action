@@ -4,6 +4,12 @@ namespace CityBreaks.AuthorizationRequirements
 {
     public class ViewRolesRequirement : IAuthorizationRequirement, IAuthorizationHandler
     {
+        public int Months { get; }
+        public ViewRolesRequirement(int months)
+        {
+            Months = months > 0 ? 0 : months;
+        }
+
         public Task HandleAsync(AuthorizationHandlerContext context)
         {
             var joiningDateClaim = context.User.FindFirst(c => c.Type == "Joining Date")?.Value;
@@ -14,7 +20,7 @@ namespace CityBreaks.AuthorizationRequirements
             }
             if(context.User.HasClaim("Permission", "View Roles") &&
                 joiningDate > DateTime.MinValue &&
-                joiningDate < DateTime.Now.AddMonths(-6))
+                joiningDate < DateTime.Now.AddMonths(Months))
             {
                 context.Succeed(this);
             }
