@@ -3,3 +3,5 @@
 - BasicAuthorization
 - Roles
 - Claims
+- Custom Requirements
+- Separate Handler

@@ -12,15 +12,15 @@ namespace CityBreaks.AuthorizationRequirements
 
         public Task HandleAsync(AuthorizationHandlerContext context)
         {
-            if (context.User.IsInRole("Admin"))
-            {
-                context.Succeed(this);
-            }
             var joiningDateClaim = context.User.FindFirst(c => c.Type == "Joining Date")?.Value;
+            if (joiningDateClaim == null)
+            {
+                return Task.CompletedTask;
+            }
             var joiningDate = Convert.ToDateTime(joiningDateClaim);
-            if(context.User.HasClaim("Permission", "View Roles") &&
-                joiningDate > DateTime.MinValue &&
-                joiningDate < DateTime.Now.AddMonths(Months))
+
+            if (context.User.HasClaim("Permission", "View Roles") &&
+                  joiningDate < DateTime.Now.AddMonths(Months))
             {
                 context.Succeed(this);
             }
