@@ -5,3 +5,4 @@
 - Claims
 - Custom Requirements
 - Separate Handler
+- Role Claims
