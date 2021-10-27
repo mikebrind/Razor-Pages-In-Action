@@ -22,7 +22,7 @@ builder.Services.AddRazorPages(options => {
     options.Conventions.AuthorizeFolder("/CountryManager");
     options.Conventions.AuthorizeFolder("/PropertyManager");
     options.Conventions.AuthorizeFolder("/RolesManager", "ViewRolesPolicy");
-    options.Conventions.AuthorizeFolder("/ClaimsManager", "ViewClaimsPolicy");
+    //options.Conventions.AuthorizeFolder("/ClaimsManager", "ViewClaimsPolicy");
     options.Conventions.Add(new CultureTemplatePageRouteModelConvention());
     options.Conventions.Add(new PageRouteTransformerConvention(new KebabPageRouteParameterTransformer()));
 });
