@@ -1,5 +1,6 @@
 ﻿using CityBreaks.AuthorizationRequirements;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace CityBreaks.AuthorizationHandlers
 {
