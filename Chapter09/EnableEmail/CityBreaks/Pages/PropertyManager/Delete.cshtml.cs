@@ -9,30 +9,31 @@ namespace CityBreaks.Pages.PropertyManager
     {
         private readonly IPropertyService _propertyService;
 
-    public DeleteModel(IPropertyService propertyService)
-    {    
-        _propertyService = propertyService;
-    }    
-
-    public Property Property { get; set; }
-
-    [BindProperty(SupportsGet = true)]
-    public int Id { get; set; }
-
-    public async Task<IActionResult> OnGetAsync()
-    {    
-        Property = await _propertyService.FindAsync(Id);
-
-        if (Property == null)
-        {   
-            return NotFound();
+        public DeleteModel(IPropertyService propertyService)
+        {
+            _propertyService = propertyService;
         }
-        return Page();
-    }    
 
-    public async Task<IActionResult> OnPostAsync()
-    {    
-        await _propertyService.DeleteAsync(Id);
-        return RedirectToPage("./Index");
-    }   
+        public Property Property { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int Id { get; set; }
+
+        public async Task<IActionResult> OnGetAsync()
+        {
+            Property = await _propertyService.FindAsync(Id);
+
+            if (Property == null)
+            {
+                return NotFound();
+            }
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            await _propertyService.DeleteAsync(Id);
+            return RedirectToPage("./Index");
+        }
+    }
 }
