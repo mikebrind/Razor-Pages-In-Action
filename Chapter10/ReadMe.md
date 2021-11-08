@@ -1,8 +1,9 @@
 # Chapter 10 - Authorization
 
-- BasicAuthorization
+- Basic Authorization
 - Roles
 - Claims
 - Custom Requirements
 - Separate Handler
 - Role Claims
+- Resource Authorization
