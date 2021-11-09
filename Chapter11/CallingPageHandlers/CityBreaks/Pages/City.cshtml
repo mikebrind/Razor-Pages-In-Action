@@ -7,7 +7,7 @@
 @foreach (var property in Model.City.Properties)
 {
 	<div class="mb-3">
-		<h5>@property.Name</h5>
+		<h5 data-id="@property.Id" data-bs-toggle="modal" data-bs-target="#property-modal">@property.Name</h5>
 		<p class="mb-1">@property.Address</p>
 		<i class="fas fa-euro-sign text-muted"></i> @property.DayRate.ToString("F2")<br>
 		@if (!property.SmokingPermitted)
@@ -19,4 +19,15 @@
 			<i class="fas fa-bed text-info"></i>
 		}
 	</div>
+}
+<partial name="_PropertyModalPartial" />
+@section scripts{
+	<script>
+		$(function(){
+			$('h5').on('click', function() {
+				var id = $(this).data('id');
+				$('.modal-body').load(`?handler=propertydetails&id=${id}`);
+			});
+		});
+	</script>
 }

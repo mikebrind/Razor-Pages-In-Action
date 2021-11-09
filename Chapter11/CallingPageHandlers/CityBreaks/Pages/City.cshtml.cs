@@ -8,9 +8,12 @@ namespace CityBreaks.Pages;
 public class CityModel : PageModel
 {
     private readonly ICityService _cityService;
-    public CityModel(ICityService cityService)
+    private readonly IPropertyService _propertyService;
+
+    public CityModel(ICityService cityService, IPropertyService propertyService)
     {
         _cityService = cityService;
+        _propertyService = propertyService;
     }
 
     [BindProperty(SupportsGet = true)]
@@ -25,5 +28,11 @@ public class CityModel : PageModel
             return NotFound();
         }
         return Page();
+    }
+
+    public async Task<PartialViewResult> OnGetPropertyDetails(int id)
+    {
+        var property = await _propertyService.FindAsync(id);
+        return Partial("_PropertyDetailsPartial", property);
     }
 }
