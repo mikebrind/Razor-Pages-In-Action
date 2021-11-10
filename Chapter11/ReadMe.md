@@ -1,3 +1,3 @@
 # Chapter 11
 
-- Calling Page Handlers
+- Calling Page Handlers jQuery
