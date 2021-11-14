@@ -1,0 +1,67 @@
+﻿@page "{name}"
+
+@model CityBreaks.Pages.CityModel
+@{
+    ViewData["Title"] = $"{Model.City?.Name} Details";
+}
+<h3>@Model.City.Name</h3>
+@foreach (var property in Model.City.Properties)
+{
+    <div class="mb-3">
+        <h5 data-id="@property.Id"
+        data-bs-toggle="modal"
+        data-bs-target="#property-modal">
+            @property.Name
+        </h5>
+        <p class="mb-1">@property.Address</p>
+        <i class="fas fa-euro-sign text-muted"></i> @property.DayRate.ToString("F2")<br>
+        @if (!property.SmokingPermitted)
+        {
+            <i class="fas fa-smoking-ban text-danger"></i>
+        }
+        @for (var i = 1; i <= property.MaxNumberOfGuests; i++)
+        {
+            <i class="fas fa-bed text-info"></i>
+        }
+    </div>
+}
+@Html.AntiForgeryToken();
+<partial name="_PropertyModalPartial" />
+@section scripts{
+<script>
+    document.querySelectorAll('h5').forEach(el => {
+        el.addEventListener('click', (event) => {
+            const id = event.target.dataset.id;
+            fetch(`?handler=propertydetails&id=${id}`)
+            .then((response) => {
+                return response.text();
+            })
+            .then((result) => {
+                document.querySelector('.modal-body').innerHTML = result;
+            });
+        });
+    });
+document.querySelector('.btn-success')
+    .addEventListener('click', () => {
+        const token = document.querySelector('[name="__RequestVerificationToken"]').value;
+        const data = {
+                startdate: document.getElementById('StartDate').value,
+                enddate: document.getElementById('EndDate').value,
+                numberofguests: document.getElementById('NumberOfGuests').value,
+                __requestverificationtoken: token,
+                dayrate: document.getElementById('Property_DayRate').value
+            };
+            fetch('?handler=booking', {
+                method: 'post',
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                },
+                body: new URLSearchParams(data).toString()
+            }).then((response) =>{
+                return response.text();
+            }).then((totalCost) => {
+                alert(`Your stay will cost ${totalCost}`);
+            });
+        });
+</script>
+}

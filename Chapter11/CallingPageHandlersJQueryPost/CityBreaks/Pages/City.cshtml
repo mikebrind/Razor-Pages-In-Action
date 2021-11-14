@@ -4,12 +4,6 @@
 @{
     ViewData["Title"] = $"{Model.City?.Name} Details";
 }
-@using Microsoft.AspNetCore.Antiforgery
-@inject IAntiforgery antiforgery
-@{
-    var token = antiforgery.GetAndStoreTokens(HttpContext).RequestToken;
-}
-@token
 <h3>@Model.City.Name</h3>
 @foreach (var property in Model.City.Properties)
 {

@@ -1,0 +1,19 @@
+X-Sender: test@test.com
+X-Receiver: anna@test.com
+MIME-Version: 1.0
+From: test@test.com
+To: anna@test.com
+Date: 17 Oct 2021 07:55:25 +0100
+Subject: Confirm your email
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+Please confirm your account by <a href=3D'https://localhost:7236/=
+identity/account/confirm-email?userId=3D54e7e011-a0eb-4e72-9337-0=
+75a629985d7&amp;code=3DQ2ZESjhLZXFhRFhBWWloQmxmQkhnUlFLdHUyZGZLan=
+NPNi9WUWZadWlEV2c3d2xrNWRRZG9QWG1ha2RySzJ0dHJGWEp3YUhZa2xHS0hHV2F=
+Ed3N5aFVNY0FpdGVJc3RvSUo4VHNhTHZTTkVuZHRHZnczY2FEb2NVNnBKdytVWVVY=
+TTJUVEtFRzYxbVBuS1FTZ2hwNGtweVRZSlFlN2dnbzV2WW0rU0FxUzVPQWJwQjRMe=
+VlWNjdjMitnRW5vdkJDSkIvU3dLb0g5czBxSllaYzZqTnRtR0E5NThWU2dReW5Ddl=
+pQMi9nSVdIQkJXTXhCR21RSnpORnRsc0hFZzFsWVgxMWROUT09&amp;returnUrl=3D=
+%2F'>clicking here</a>.
