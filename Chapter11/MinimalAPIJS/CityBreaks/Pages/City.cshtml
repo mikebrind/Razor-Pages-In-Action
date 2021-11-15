@@ -30,33 +30,40 @@
 @section scripts{
 <script>
 $(function(){
-    $('h5').on('click', function() {
-        const id = $(this).data('id');
-        $('.modal-body').load(`?handler=propertydetails&id=${id}`);
-    });
-    $('.btn-success').on('click', function(){
-        const token = $('[name="__RequestVerificationToken"]').val();
-        const data = {
-                startdate: $('#StartDate').val(),
-                enddate: $('#EndDate').val(),
-                numberofguests: $('#NumberOfGuests').val(),
-                property:{
-                    dayrate: $('#Property_DayRate').val()
-                }
-            }
-        $.ajax({
-            url: '?handler=booking',
-            method: "post",
-            contentType: "application/json",
-            headers: {
-                "RequestVerificationToken" : token
-            },
-            data: JSON.stringify(data)
-        })
-        .done(function(response){
-            alert(`Your stay will cost ${response.totalCost}`);
+    document.querySelectorAll('h5').forEach(el => {
+        el.addEventListener('click', (event) => {
+            const id = event.target.dataset.id;
+            fetch(`?handler=propertydetails&id=${id}`)
+            .then((response) => {
+                return response.text();
+            })
+            .then((result) => {
+                document.querySelector('.modal-body').innerHTML = result;
+            });
         });
     });
+    document.querySelector('.btn-success')
+    .addEventListener('click', () => {
+        const data = {
+                startdate: document.getElementById('StartDate').value,
+                enddate: document.getElementById('EndDate').value,
+                numberofguests: document.getElementById('NumberOfGuests').value,
+                property: {
+                    dayrate: document.getElementById('Property_DayRate').value
+                }
+            };
+            fetch('/api/property/booking', {
+                method: 'post',
+                headers: {
+                    "Content-type": "application/json",    // avoid 415 unsupported media type
+                },
+                body: JSON.stringify(data)    
+            }).then((response) => {
+                return response.json();    
+            }).then((result) => {
+                alert(`Your stay will cost ${result.totalCost}`);    
+            });
+        });
 });
 </script>
 }

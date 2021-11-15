@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CityBreaks.Pages;
 
+
 public class CityModel : PageModel
 {
     private readonly ICityService _cityService;

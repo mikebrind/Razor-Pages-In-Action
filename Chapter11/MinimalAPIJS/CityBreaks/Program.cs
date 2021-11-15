@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
+using static CityBreaks.Pages.CityModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -91,5 +92,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+
+app.MapPost("/api/property/booking", (BookingInputModel model) =>
+{
+    var numberOfDays = (int)(model.EndDate.Value - model.StartDate.Value).TotalDays;
+    var totalCost = numberOfDays * model.Property.DayRate * model.NumberOfGuests;
+    Results.Ok(new { TotalCost = totalCost });
+});
 
 app.Run();
