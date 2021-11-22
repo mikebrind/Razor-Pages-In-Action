@@ -105,7 +105,7 @@ app.MapPost("/api/property/booking",
         DayRate = model.Property.DayRate
     };
     var totalCost = bookingService.Calculate(booking);
-    return Results.Json(new { TotalCost = totalCost });
+    return Results.Ok(new { TotalCost = totalCost });
 });
 
 app.Run();
