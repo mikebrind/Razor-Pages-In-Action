@@ -1,0 +1,33 @@
+﻿@page
+@model CityBreaks.Pages.RolesManager.AssignModel
+@{
+}
+<h4>Assign User To Role</h4>
+
+<div class="row">
+    <div class="col-md-8">
+        <form method="post">
+              <div class="form-group mb-3">
+                <label asp-for="SelectedUser" class="control-label"></label>
+                <select asp-for="SelectedUser" asp-items="Model.Users" class="form-control">
+                    <option></option>
+                </select>
+                <span asp-validation-for="SelectedUser" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="SelectedRole" class="control-label"></label>
+                <select asp-for="SelectedRole" asp-items="Model.Roles" class="form-control">
+                    <option></option>
+                </select>
+                <span asp-validation-for="SelectedRole" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Assign" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+<partial name="_ValidationScriptsPartial" />
+}
