@@ -1,0 +1,18 @@
+﻿@page
+@model CityBreaks.Pages.RoleManager.IndexModel
+@{
+	ViewData["Title"] = "Roles";
+}
+<h4>Roles</h4>
+<a class="btn btn-success" asp-page="/RolesManager/Create">New</a>
+@if (Model.Roles.Any())
+{
+	<table class="table">
+		@foreach(var role in Model.Roles)
+		{
+			<tr>
+				<td>@role.Name</td>
+			</tr>
+		}
+	</table>
+}
