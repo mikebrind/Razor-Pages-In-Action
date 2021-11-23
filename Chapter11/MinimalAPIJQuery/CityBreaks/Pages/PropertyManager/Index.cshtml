@@ -1,0 +1,87 @@
+﻿@page
+@model CityBreaks.Pages.PropertyManager.IndexModel
+@using CityBreaks.AuthorizationRequirements
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService authService
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Property[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Property[0].Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Property[0].City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Property[0].MaxNumberOfGuests)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Property[0].DayRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Property[0].SmokingPermitted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Property[0].AvailableFrom)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Property)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxNumberOfGuests)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DayRate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SmokingPermitted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AvailableFrom)
+                </td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> 
+                    @{
+                        var result = await authService.AuthorizeAsync(User, item, PropertyOperations.Edit);
+                        if (result.Succeeded)
+                        {
+                            @:|
+                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                        }
+                        result = await authService.AuthorizeAsync(User, item, PropertyOperations.Delete);
+                        if (result.Succeeded)
+                        {
+                             @:|
+                             <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

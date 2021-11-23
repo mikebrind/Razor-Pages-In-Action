@@ -1,0 +1,24 @@
+﻿@model CityModel.BookingInputModel
+<h3>@Model.Property.Name</h3>
+<address>
+    @Model.Property.Address
+</address>
+<p>Availability: @(Model.Property.AvailableFrom < DateTime.Now ? "Immediate" : Model.Property.AvailableFrom.ToShortDateString())</p>
+<p>Day Rate: @Model.Property.DayRate.ToString("c")</p>
+<p>Max Guests: @Model.Property.MaxNumberOfGuests</p>
+<p>Smoking permitted? @(Model.Property.SmokingPermitted ? "Yes" : "No")</p>
+<form id="booking-form">
+    <input type="hidden" asp-for="Property.DayRate" />
+    <div class="form-group">
+        <label asp-for="StartDate" class="control-label"></label>
+        <input asp-for="StartDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EndDate" class="control-label"></label>
+        <input asp-for="EndDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="NumberOfGuests" class="control-label"></label>
+        <input asp-for="NumberOfGuests" class="form-control" max="@Model.Property.MaxNumberOfGuests" />
+    </div>
+</form>
