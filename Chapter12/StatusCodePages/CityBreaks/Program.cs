@@ -86,6 +86,8 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStatusCodePagesWithReExecute("/{0}");
+
 app.UseStaticFiles();
 
 app.UseRouting();

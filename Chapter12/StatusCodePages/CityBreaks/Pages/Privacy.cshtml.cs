@@ -14,7 +14,7 @@ namespace CityBreaks.Pages
 
         public void OnGet()
         {
-            Response.StatusCode = 418;
+            
         }
     }
 }
