@@ -13,7 +13,11 @@ namespace CityBreaks.Pages
             _cityService = cityService;
         
         public List<City> Cities { get; set; }
-        public async Task OnGetAsync() => 
+        public async Task OnGetAsync()
+        {
+                throw new ApplicationException("Testing custom error pages");
+            
             Cities = await _cityService.GetAllAsync();
+            }
     }
 }
