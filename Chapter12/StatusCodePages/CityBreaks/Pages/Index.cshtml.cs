@@ -15,7 +15,7 @@ namespace CityBreaks.Pages
         public List<City> Cities { get; set; }
         public async Task OnGetAsync()
         {
-                throw new ApplicationException("Testing custom error pages");
+            throw new NotImplementedException();
             
             Cities = await _cityService.GetAllAsync();
             }
