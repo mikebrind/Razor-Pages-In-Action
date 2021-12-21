@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.UI.Services;
-using System.Net.Mail;
+﻿using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using MimeKit;
+using MimeKit.IO;
 
 namespace CityBreaks.Services
 {
@@ -12,17 +14,59 @@ namespace CityBreaks.Services
         }
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            var message = new MailMessage("test@test.com", email, subject, htmlMessage)
+            var pickupDirectory = Path.Combine(_environment.ContentRootPath, "TempMail");
+            var message = new MimeMessage();
+            message.From.Add(MailboxAddress.Parse("test@test.com"));
+            message.To.Add(MailboxAddress.Parse(email));
+            message.Subject = subject;
+
+            message.Body = new TextPart("html")
             {
-                IsBodyHtml = true
+                Text = htmlMessage
             };
-            using var client = new SmtpClient()
+
+            await SaveToPickupDirectory(message, pickupDirectory);
+            await Task.CompletedTask;
+        }
+        public static async Task SaveToPickupDirectory(MimeMessage message, string pickupDirectory)
+        {
+            do
             {
-                Host = "localhost",
-                DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory,
-                PickupDirectoryLocation = Path.Combine(_environment.ContentRootPath, "TempMail")
-            };
-            await client.SendMailAsync(message);
+                var path = Path.Combine(pickupDirectory, Guid.NewGuid().ToString() + ".eml");
+                Stream stream;
+
+                try
+                {
+                    stream = File.Open(path, FileMode.CreateNew);
+                }
+                catch (IOException)
+                {
+                    if (File.Exists(path))
+                        continue;
+                    throw;
+                }
+
+                try
+                {
+                    using (stream)
+                    {
+                        using var filtered = new FilteredStream(stream);
+                        filtered.Add(new SmtpDataFilter());
+
+                        var options = FormatOptions.Default.Clone();
+                        options.NewLineFormat = NewLineFormat.Dos;
+
+                        await message.WriteToAsync(options, filtered);
+                        await filtered.FlushAsync();
+                        return;
+                    }
+                }
+                catch
+                {
+                    File.Delete(path);
+                    throw;
+                }
+            } while (true);
         }
     }
 }

@@ -1,0 +1,50 @@
+﻿@page
+@model CityBreaks.Pages.CountryManager.EditModel
+@{
+}
+<h4>Edit Countries</h4>
+
+<div class="row">
+    <div class="col-md-8">
+        <form method="post">
+            <table class="table table-borderless">
+                <tr>
+                    <th>Name</th>
+                    <th>ISO-3166-1 Code</th>
+                </tr>
+                @foreach (var country in Model.Inputs)
+                {
+                    <input type="hidden" name="Inputs.Index" value="@country.Id" />
+                    <tr>
+                        <td class="w-75">
+                        <input name="Inputs[@country.Id].CountryName" 
+                            value="@country.CountryName" 
+                            class="form-control" />
+                    </td>
+                        <td class="w-25">
+                        <input name="Inputs[@country.Id].CountryCode" 
+                            value="@country.CountryCode" 
+                            class="form-control" />
+                    </td>
+                    </tr>
+                }
+            </table>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@if (Model.Countries.Any())
+{
+    <p>You submitted the following</p>
+    <ul>
+    @foreach (var country in Model.Countries)
+    {
+        <li>
+            <img src="/images/flags/@(country.CountryCode).png" />
+            @country.CountryName
+        </li>
+    }
+    </ul>
+}
