@@ -1,20 +1,22 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
 
-namespace CityBreaks.Logging;
-
-public class EmailLoggerProvider : ILoggerProvider
+namespace CityBreaks.Logging
 {
-    private readonly IServiceProvider _serviceProvider;
 
-    public EmailLoggerProvider(IServiceProvider serviceProvider)
+    public class EmailLoggerProvider : ILoggerProvider
     {
-        _serviceProvider = serviceProvider;
+        private readonly IServiceProvider _serviceProvider;
+
+        public EmailLoggerProvider(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+        }
+
+        public ILogger CreateLogger(string categoryName)
+        {
+            var emailService = _serviceProvider.GetRequiredService<IEmailSender>();
+            return new EmailLogger(emailService);
+        }
+        public void Dispose() { }
     }
-   
-    public ILogger CreateLogger(string categoryName)
-    {
-        var emailService = _serviceProvider.GetRequiredService<IEmailSender>();
-        return new EmailLogger(emailService);
-    }
-    public void Dispose() { }
 }

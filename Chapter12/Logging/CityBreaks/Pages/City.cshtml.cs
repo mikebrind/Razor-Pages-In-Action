@@ -13,8 +13,9 @@ public class CityModel : PageModel
     private readonly IPropertyService _propertyService;
     private readonly ILogger<CityModel> _logger;
 
-
-    public CityModel(ICityService cityService, IPropertyService propertyService, ILogger<CityModel> logger)
+    public CityModel(ICityService cityService, 
+        IPropertyService propertyService, 
+        ILogger<CityModel> logger)
     {
         _cityService = cityService;
         _propertyService = propertyService;
@@ -30,10 +31,10 @@ public class CityModel : PageModel
         City = await _cityService.GetByNameAsync(Name);
         if (City == null)
         {
-            _logger.LogWarning("City {name} not found", Name);
+            _logger.LogWarning("City \"{name}\" not found", Name);
             return NotFound();
         }
-        _logger.LogInformation("City {name} found", Name);
+        _logger.LogInformation("City \"{name}\"  found", Name);
         return Page();
     }
 

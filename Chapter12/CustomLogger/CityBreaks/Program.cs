@@ -76,7 +76,6 @@ builder.Services.AddSingleton<IAuthorizationHandler, ViewRolesHandler>();
 builder.Services.AddSingleton<IAuthorizationHandler, PropertyAuthorizationHandler>();
 builder.Services.AddSingleton<IBookingService, BookingService>();
 builder.Services.AddTransient<ILoggerProvider, EmailLoggerProvider>();
-//builder.Logging.AddEmailLogger();
 
 var app = builder.Build();
 
