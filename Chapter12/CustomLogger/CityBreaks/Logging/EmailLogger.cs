@@ -14,14 +14,14 @@ namespace CityBreaks.Logging
 
         public bool IsEnabled(LogLevel logLevel) => logLevel == LogLevel.Error || logLevel == LogLevel.Critical;
 
-        public async void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
             if (!IsEnabled(logLevel))
                 return;
             var htmlMessage = state.ToString() + "<br><br>" +
                 exception?.Message + "<br><br>" +
                 exception?.StackTrace;
-            await SendLog(htmlMessage);
+            Task.Run(() => SendLog(htmlMessage));
         }
 
         private async Task SendLog(string htmlMessage)
