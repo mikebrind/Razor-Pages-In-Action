@@ -1,0 +1,31 @@
+﻿@page
+@model CityBreaks.Pages.ClaimsManager.IndexModel
+@{
+    ViewData["Title"] = "User Claims";
+}
+<h4>User Claims</h4>
+<a class="btn btn-success" asp-page="/ClaimsManager/Assign">New</a>
+@foreach (var user in Model.Users)
+{
+    var claims = await Model.UserManager.GetClaimsAsync(user);
+    if (claims.Any())
+    {
+        <h5>@user.UserName</h5>
+        <table class="table-striped col-12">
+            <tr>
+                <th>Type</th>
+                <th>Value</th>
+                <th>Issuer</th>
+            </tr>
+            @foreach (var claim in claims)
+            {
+                <tr>
+                    <td>@claim.Type</td>
+                    <td>@claim.Value</td>
+                    <td>@claim.Issuer</td>
+                </tr>
+            }
+        </table>
+    }
+}
+
