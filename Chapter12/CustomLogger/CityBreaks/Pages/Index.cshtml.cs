@@ -12,10 +12,9 @@ namespace CityBreaks.Pages
             _cityService = cityService;
 
         public List<City> Cities { get; set; }
-public async Task OnGetAsync()
-{
-    Cities = await _cityService.GetAllAsync();
-    throw new ApplicationException("Testing the logger");
-}
+        public async Task OnGetAsync()
+        {
+            Cities = await _cityService.GetAllAsync();
+        }
     }
 }

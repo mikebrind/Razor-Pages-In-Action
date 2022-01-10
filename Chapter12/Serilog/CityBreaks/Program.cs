@@ -15,19 +15,22 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Events;
+using Serilog.Formatting.Json;
 using static CityBreaks.Pages.CityModel;
 
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .CreateBootstrapLogger();
+    .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+    .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
+    .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}")
+    .WriteTo.File(path: "Logs\\log.json", formatter: new JsonFormatter(), rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
 Log.Information("Starting up");
 try
 {
     var builder = WebApplication.CreateBuilder(args);
-    //builder.Logging.ClearProviders();
-    builder.Host.UseSerilog((host, config) => config
-        .ReadFrom.Configuration(host.Configuration));
+
+    builder.Host.UseSerilog();
 
     // Add builder.Services to the container.
     builder.Services.AddRazorPages(options =>
@@ -105,7 +108,7 @@ try
     app.UseStatusCodePagesWithReExecute("/errors/{0}");
     app.UseStaticFiles();
     
-    app.UseSerilogRequestLogging();
+    //app.UseSerilogRequestLogging();
     
     app.UseRouting();
     app.UseAuthentication();

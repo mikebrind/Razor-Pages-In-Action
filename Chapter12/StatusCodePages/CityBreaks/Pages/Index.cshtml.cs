@@ -13,7 +13,10 @@ namespace CityBreaks.Pages
             _cityService = cityService;
         
         public List<City> Cities { get; set; }
-        public async Task OnGetAsync() =>
-			Cities = await _cityService.GetAllAsync();
+        public async Task OnGetAsync()
+        {
+            Cities = await _cityService.GetAllAsync();
+            throw new ApplicationException("Testing status code 500");
+        }
     }
 }
