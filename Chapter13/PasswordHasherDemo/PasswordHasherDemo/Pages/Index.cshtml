@@ -3,8 +3,21 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (Model.Result != null)
+{
+    <div class="alert alert-@(Model.Result == "Success" ? "success" : "danger") col-4">@Model.Result</div>
+}
+<form method="post" class="col-4">
+    <input asp-for="HashedPassword" value="@Model.HashedPassword" />
+    <div class="form-group">
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control" />
+    </div>
+    <div class="form-group mt-3">
+        <button class="btn btn-sm btn-success">Submit</button>
+    </div>
+</form>
