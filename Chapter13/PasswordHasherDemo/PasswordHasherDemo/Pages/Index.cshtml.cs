@@ -7,30 +7,32 @@ using System.ComponentModel.DataAnnotations;
 namespace PasswordHasherDemo.Pages;
 public class IndexModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
     private readonly IPasswordHasher<User> _passwordHasher;
-    public IndexModel(ILogger<IndexModel> logger, IPasswordHasher<User> passwordHasher)
+    public IndexModel(IPasswordHasher<User> passwordHasher)
     {
-        _logger = logger;
         _passwordHasher = passwordHasher;
     }
 
-    [BindProperty,DataType(DataType.Password)]
+    [BindProperty,Required,DataType(DataType.Password)]
     public string Password { get; set; }
-    [BindProperty,Display(Name ="User Name")]
+    [BindProperty,Required,Display(Name ="User Name")]
     public string UserName { get; set; }
     [BindProperty,HiddenInput]
-    public string? HashedPassword { get; set; }
+    public string HashedPassword { get; set; }
     public string Result { get; set; }
     public void OnPost()
     {
-        if (string.IsNullOrEmpty(HashedPassword))
+        if (ModelState.IsValid)
         {
-            HashedPassword = _passwordHasher.HashPassword(new User(), Password);
-        }
-        else
-        {
-            Result = _passwordHasher.VerifyHashedPassword(new User(), HashedPassword, Password).ToString();
+            var user = new User { UserName = UserName };
+            if (string.IsNullOrEmpty(HashedPassword))
+            {
+                HashedPassword = _passwordHasher.HashPassword(user, Password);
+            }
+            else
+            {
+                Result = _passwordHasher.VerifyHashedPassword(user, HashedPassword, Password).ToString();
+            }
         }
     }
 }
