@@ -11,7 +11,7 @@ This chapter covers
 ## Source Code
 
 - [Use a Razor functions block](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter03/FunctionsBlockExample) (Listing 3.3)
-- [Control blocks in Razor](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter03/ControlBlockExamples) (Section 3.1.3)
+- [Control blocks in Razor](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter03/ControlBlockExamples) (§ 3.1.3)
 - [Razor Layouts](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter03/LayoutExample) (Listing 3.17)
 - [Sections in Razor](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter03/SectionExample) (Listing 3.20)
 - [Razor Partials](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter03/PartialExample) (Listing 3.22)
