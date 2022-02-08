@@ -10,7 +10,7 @@ This chapter covers
 
 ## Source Code
 
-- [First application](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter02/WebApplication1)
-- [Basic middleware examples](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter02/MiddlewareExample01)
-- [Middleware class example](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter02/MiddlewareClassExamples)
-- [IMiddleware example](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter02/IMiddlewareExample)
+- [First application](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter02/WebApplication1) (Section 2.1)
+- [Basic middleware examples](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter02/MiddlewareExample01) (Section 2.3.4)
+- [Middleware class example](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter02/MiddlewareClassExamples) (Section 2.3.5)
+- [IMiddleware example](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter02/IMiddlewareExample) (Section 2.3.5)
