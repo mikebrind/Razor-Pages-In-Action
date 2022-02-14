@@ -28,8 +28,12 @@ Log.Logger = new LoggerConfiguration()
 Log.Information("Starting up");
 try
 {
-    var builder = WebApplication.CreateBuilder(args);
-
+    
+    var builder = WebApplication.CreateBuilder();
+    //var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+    //{
+    //    EnvironmentName = "Development"
+    //});
     builder.Host.UseSerilog();
 
     // Add builder.Services to the container.
@@ -84,8 +88,15 @@ try
     builder.Services.AddScoped<IPriceService, UsPriceService>();
     builder.Services.AddScoped<IPriceService, DefaultPriceService>();
     builder.Services.AddScoped<IPropertyService, PropertyService>();
-    builder.Services.AddTransient<IEmailSender, EmailService>();
-
+    //builder.Host.UseEnvironment("Production");
+    if (builder.Environment.IsDevelopment()) 
+    { 
+        builder.Services.AddTransient<IEmailSender, EmailService>();
+    }
+    else
+    {
+        builder.Services.AddTransient<IEmailSender, ProductionEmailService>();
+    }
 
     builder.Services.AddSingleton<IAuthorizationHandler, IsInRoleHandler>();
     builder.Services.AddSingleton<IAuthorizationHandler, HasClaimHandler>();

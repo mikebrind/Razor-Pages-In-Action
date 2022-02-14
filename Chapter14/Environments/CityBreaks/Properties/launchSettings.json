@@ -17,6 +17,15 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    "CityBreaksProduction": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7237;http://localhost:5237",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      }
+    },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
