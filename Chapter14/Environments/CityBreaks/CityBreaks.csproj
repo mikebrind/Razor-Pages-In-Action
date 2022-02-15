@@ -17,4 +17,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />        
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="https://json.schemastore.org/lintstagedrc.schema.json" /></VisualStudio></ProjectExtensions>
 </Project>

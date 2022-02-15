@@ -32,7 +32,7 @@ try
     var builder = WebApplication.CreateBuilder();
     //var builder = WebApplication.CreateBuilder(new WebApplicationOptions
     //{
-    //    EnvironmentName = "Development"
+    //    EnvironmentName = "Staging"
     //});
     builder.Host.UseSerilog();
 
