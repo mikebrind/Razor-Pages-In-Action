@@ -7,8 +7,8 @@ namespace CityBreaks.Services
 {
     public class EmailService : IEmailSender
     {
-        private readonly IWebHostEnvironment _environment;
-        public EmailService(IWebHostEnvironment environment)
+        private readonly IHostEnvironment _environment;
+        public EmailService(IHostEnvironment environment)
         {
             _environment = environment;
         }
