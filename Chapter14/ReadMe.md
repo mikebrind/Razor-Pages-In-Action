@@ -15,3 +15,4 @@ This chapter covers
 - [Environments](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter14/Environments) 
 - [AppSettings](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter14/AppSettings)
 - [Strongly Typed AppSettings](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter14/AppSettingsStronglyTyped)
+- [Using the Options Pattern](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter14/AppSettingsStronglyTypedOptions)
