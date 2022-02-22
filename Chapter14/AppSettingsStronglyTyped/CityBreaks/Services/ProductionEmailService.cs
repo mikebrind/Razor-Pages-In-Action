@@ -31,7 +31,7 @@ namespace CityBreaks.Services
             };
 
             using var smtp = new SmtpClient();
-            await smtp.ConnectAsync(_settings.Host,_settings.Port, _settings.StartTls);
+            await smtp.ConnectAsync(_settings.Host, _settings.Port, _settings.StartTls);
             await smtp.AuthenticateAsync(_settings.Credentials.UserName, _settings.Credentials.Password);
             await smtp.SendAsync(message);
             await smtp.DisconnectAsync(true);

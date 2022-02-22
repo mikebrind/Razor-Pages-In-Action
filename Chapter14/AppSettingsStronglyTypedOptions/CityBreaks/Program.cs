@@ -54,7 +54,7 @@ try
         options.ConstraintMap.Add("city", typeof(CityRouteConstraint));
         options.ConstraintMap.Add("slug", typeof(SlugParameterTransformer));
     });
-
+    builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection(nameof(SmtpSettings)));   
     builder.Services.AddDbContext<CityBreaksContext>(options =>
     {
         options.UseSqlite(builder.Configuration.GetConnectionString("CityBreaksContext"));
@@ -84,11 +84,9 @@ try
     builder.Services.AddTransient<LifetimeDemoService>();
     builder.Services.AddSingleton<SingletonService>();
     builder.Services.AddScoped<IPriceService, FrPriceService>();
-    builder.Services.AddScoped<IPriceService, GbPriceService>();
     builder.Services.AddScoped<IPriceService, UsPriceService>();
     builder.Services.AddScoped<IPriceService, DefaultPriceService>();
     builder.Services.AddScoped<IPropertyService, PropertyService>();
-    //builder.Host.UseEnvironment("Production");
     //if (builder.Environment.IsDevelopment()) 
     //{ 
     //    builder.Services.AddTransient<IEmailSender, EmailService>();
