@@ -98,6 +98,8 @@ try
         builder.Services.AddTransient<IEmailSender, ProductionEmailService>();
     //}
 
+    //builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection(nameof(SmtpSettings)));
+
     builder.Services.AddSingleton<IAuthorizationHandler, IsInRoleHandler>();
     builder.Services.AddSingleton<IAuthorizationHandler, HasClaimHandler>();
     builder.Services.AddSingleton<IAuthorizationHandler, ViewRolesHandler>();
