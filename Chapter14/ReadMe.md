@@ -1,6 +1,6 @@
 # Chapter 14
 
-## Configuring and ublishing your application
+## Configuring and publishing your application
 
 This chapter covers
 
@@ -14,3 +14,4 @@ This chapter covers
 
 - [Environments](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter14/Environments) 
 - [AppSettings](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter14/AppSettings)
+- [Strongly Typed AppSettings](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter14/AppSettingsStronglyTyped)
