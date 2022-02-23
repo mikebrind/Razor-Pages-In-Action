@@ -1,0 +1,57 @@
+﻿@page "{name}"
+
+@model CityBreaks.Pages.CityModel
+@{
+    ViewData["Title"] = $"{Model.City.Name} Details";
+}
+<h3>@Model.City.Name</h3>
+@foreach (var property in Model.City.Properties)
+{
+    <div class="mb-3">
+        <h5 data-id="@property.Id"
+        data-bs-toggle="modal"
+        data-bs-target="#property-modal">
+            @property.Name
+        </h5>
+        <p class="mb-1">@property.Address</p>
+        <i class="fas fa-euro-sign text-muted"></i> @property.DayRate.ToString("F2")<br>
+        @if (!property.SmokingPermitted)
+        {
+            <i class="fas fa-smoking-ban text-danger"></i>
+        }
+        @for (var i = 1; i <= property.MaxNumberOfGuests; i++)
+        {
+            <i class="fas fa-bed text-info"></i>
+        }
+    </div>
+}
+<partial name="_PropertyModalPartial" />
+@section scripts{
+<script>
+$(function(){
+    $('h5').on('click', function() {
+        const id = $(this).data('id');
+        $('.modal-body').load(`?handler=propertydetails&id=${id}`);
+    });
+    $('.btn-success').on('click', function(){
+        const data = {
+                startdate: $('#StartDate').val(),
+                enddate: $('#EndDate').val(),
+                numberofguests: $('#NumberOfGuests').val(),
+                property:{
+                    dayrate: $('#Property_DayRate').val()
+                }
+            }
+        $.ajax({
+            url: '/api/property/booking',
+            method: "post",
+            contentType: "application/json",
+            data: JSON.stringify(data)
+        })
+        .done(function(response){
+            alert(`Your stay will cost ${response.totalCost}`);
+        });
+    });
+});
+</script>
+}
