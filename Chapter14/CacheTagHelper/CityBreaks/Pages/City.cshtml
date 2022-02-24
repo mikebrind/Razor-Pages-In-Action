@@ -4,7 +4,9 @@
 @{
     ViewData["Title"] = $"{Model.City.Name} Details";
 }
+
 <h3>@Model.City.Name</h3>
+
 @foreach (var property in Model.City.Properties)
 {
     <div class="mb-3">

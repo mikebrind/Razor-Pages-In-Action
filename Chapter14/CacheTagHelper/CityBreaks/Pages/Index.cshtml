@@ -7,18 +7,8 @@
 <h1>City Breaks</h1>
 <div class="container">
     <div class="row">
-
-        @foreach (var city in Model.Cities)
-        {
-            <div class="col-4 p-3" style="text-shadow: rgb(0, 0, 0) 1px 1px 1px">
-                <div class="card p-3 shadow" style="background:url(/images/cities/@city.Photo) no-repeat center center;background-size: cover;height:240px;">
-                    <h3>
-                        <a class="text-white text-decoration-none" asp-page="/City" asp-route-name="@city.Name">@city.Name</a>
-                        <img src="/images/flags/@(city.Country.CountryCode).png" aria-label="@($"{city.Name}, {city.Country.CountryName}")">
-                    </h3>
-                    <h6 class="text-white">@city.Properties.Count() properties</h6>
-                </div>
-            </div>
-        }
+        <cache>
+            <vc:cities />
+        </cache>       
     </div>
 </div>

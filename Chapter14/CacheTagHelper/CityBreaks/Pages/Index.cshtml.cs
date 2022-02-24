@@ -17,14 +17,14 @@ namespace CityBreaks.Pages
         }
 
         public List<City> Cities { get; set; }
-        public async Task OnGetAsync()
-        {
+        //public async Task OnGetAsync()
+        //{
             
-            Cities = await _cityService.GetAllAsync();
-            if (_environment.IsDevelopment())
-            {
-                _logger.LogInformation("{count} Cities retrieved", Cities.Count);
-            }
-        }
+        //    Cities = await _cityService.GetAllAsync();
+        //    if (_environment.IsDevelopment())
+        //    {
+        //        _logger.LogInformation("{count} Cities retrieved", Cities.Count);
+        //    }
+        //}
     }
 }
