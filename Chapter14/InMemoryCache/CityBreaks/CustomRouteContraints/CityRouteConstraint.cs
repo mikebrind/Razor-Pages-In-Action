@@ -8,8 +8,9 @@ namespace CityBreaks.CustomRouteContraints
             RouteValueDictionary values, RouteDirection routeDirection)
         {
             var service = httpContext.RequestServices.GetRequiredService<ICityService>();
-            var cities = Task.Run(() => service.GetCityNamesAsync());
-            return cities.Result.Select(x => x.ToLowerInvariant()).Contains(values[routeKey]?.ToString().ToLowerInvariant());
+            var task = Task.Run(() => service.GetCityNamesAsync());
+            var cities = task.Result.Select(x => x.ToLowerInvariant());
+            return cities.Contains(values[routeKey]?.ToString().ToLowerInvariant());
         }
     }
 }
