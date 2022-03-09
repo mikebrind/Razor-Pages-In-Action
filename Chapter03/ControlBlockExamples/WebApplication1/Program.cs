@@ -6,7 +6,7 @@ using WebApplication1;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+builder.Services.AddRazorPages();
 builder.Services.AddTransient<IpAddressMiddleware>();
 builder.Services.Configure<WebEncoderOptions>(options =>
 {
@@ -19,7 +19,7 @@ var app = builder.Build();
 
 // app.Run(TerminalMiddleware);
 // app.Run(async context => {
-//     await context.Response.WriteAsync("That’s all, folks!");
+//     await context.Response.WriteAsync("Thatï¿½s all, folks!");
 // });
 
 // Configure the HTTP request pipeline.

@@ -1,14 +1,14 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
 // register terminal middleware at the start of the pipeline to prevent any further processing
 // app.Run(TerminalMiddleware);
 // app.Run(async context => {
-//     await context.Response.WriteAsync("That’s all, folks!");
+//     await context.Response.WriteAsync("Thatï¿½s all, folks!");
 // });
 
 // Configure the HTTP request pipeline.
