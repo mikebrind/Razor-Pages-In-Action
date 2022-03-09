@@ -8,12 +8,6 @@ builder.Services.AddTransient<IpAddressMiddleware>();
 
 var app = builder.Build();
 
-// register terminal middleware at the start of the pipeline to prevent any further processing
-
-// app.Run(TerminalMiddleware);
-// app.Run(async context => {
-//     await context.Response.WriteAsync("That�s all, folks!");
-// });
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -26,15 +20,6 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-// app.Use(PassThroughMiddleware);
-
-// typeof
-app.UseMiddleware(typeof(IpAddressMiddleware));
-// generic
-app.UseMiddleware<IpAddressMiddleware>();
-// extension method
-app.UseIpAddressMiddleware();
-
 app.UseRouting();
 
 app.UseAuthorization();
@@ -42,20 +27,3 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-
-async Task TerminalMiddleware(HttpContext context)
-{
-    await context.Response.WriteAsync("That's all, folks!");
-}
-
-async Task PassThroughMiddleware(HttpContext context, Func<Task> next)
-{
-    if (context.Request.Query.ContainsKey("stop"))
-    {
-        await context.Response.WriteAsync("Stop the world");
-    }
-    else
-    {
-        await next();
-    }
-}
