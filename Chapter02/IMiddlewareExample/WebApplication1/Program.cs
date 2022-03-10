@@ -29,9 +29,9 @@ app.UseStaticFiles();
 // app.Use(PassThroughMiddleware);
 
 // typeof
-app.UseMiddleware(typeof(IpAddressMiddleware));
+// app.UseMiddleware(typeof(IpAddressMiddleware));
 // generic
-app.UseMiddleware<IpAddressMiddleware>();
+// app.UseMiddleware<IpAddressMiddleware>();
 // extension method
 app.UseIpAddressMiddleware();
 
@@ -42,20 +42,3 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-
-async Task TerminalMiddleware(HttpContext context)
-{
-    await context.Response.WriteAsync("That's all, folks!");
-}
-
-async Task PassThroughMiddleware(HttpContext context, Func<Task> next)
-{
-    if (context.Request.Query.ContainsKey("stop"))
-    {
-        await context.Response.WriteAsync("Stop the world");
-    }
-    else
-    {
-        await next();
-    }
-}
