@@ -20,13 +20,6 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-// app.Use(PassThroughMiddleware);
-
-// typeof
-// app.UseMiddleware(typeof(IpAddressMiddleware));
-// generic
-// app.UseMiddleware<IpAddressMiddleware>();
-// extension method
 app.UseIpAddressMiddleware();
 
 app.UseRouting();
