@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title></title>
@@ -6,17 +6,19 @@
 </head>
 <body>
     <div class="container">
-        <header>Header</header>
-        <nav>Navigation</nav>
-        <div class="row">
+        <header class="card alert-success border-5 p-3 mt-3">Header</header>
+        <nav class="card alert-primary border-5 p-3 mt-2">Navigation</nav>
+        <div class="row mt-2">
             <div class="col-3">
-                <div>Deal Of The Day Widget 1</div>
+                <div class="card alert-warning p-5 border-5">
+                    Deal Of The Day Widget 1
+                </div>
             </div>
-            <div class="col-9">
+            <div class="col-9 card border-5">
                 @RenderBody()
             </div>
         </div>
-        <footer>Footer</footer>
+        <footer class="card border-5 p-3 mt-2">Footer</footer>
     </div>
 </body>
 </html>
