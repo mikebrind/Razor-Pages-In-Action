@@ -7,9 +7,9 @@ var app = builder.Build();
 
 // register terminal middleware at the start of the pipeline to prevent any further processing
 // app.Run(TerminalMiddleware);
-// app.Run(async context => {
-//     await context.Response.WriteAsync("That�s all, folks!");
-// });
+// app.Run(async context => 
+//     await context.Response.WriteAsync("That's all, folks!");
+// );
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
