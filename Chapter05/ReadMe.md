@@ -12,7 +12,7 @@ This chapter covers
 
 - [Request.Form](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter05/RequestForm) (Listing 5.2)
 - [Request.Query](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter05/RequestQuery) (Listing 5.3)
-- [Binding Complex Objects](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter05/BindingComplexCollections) (Listing 5.10)
+- [Binding Complex Objects](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter05/BindingComplexObjects) (Listing 5.10)
 - [Binding Simple Collections](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter05/BindingSimpleCollections) (Listing 5.15)
 - [Binding Complex Collections](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter05/BindingComplexCollections) (Listing 5.16)
 - [Binding Complex Collections Explicit Index](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter05/BindingComplexCollectionsExplicitIndex) (Listing 5.19)
