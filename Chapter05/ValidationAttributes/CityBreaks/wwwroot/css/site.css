@@ -63,3 +63,6 @@ body {
   white-space: nowrap;
   line-height: 60px;
 }
+.validation-summary-valid {
+    display: none
+}
