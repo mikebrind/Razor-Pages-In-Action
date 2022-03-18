@@ -14,12 +14,13 @@
         </select>
     </div>
     <div class="mb-3">
-        <label asp-for="Rating"></label>
+        <p>Rating</p>
         <ul class="list-group border-0">
         @foreach(var option in Html.GetEnumSelectList<Rating>())
         {
             <li class="list-group-item p-0 border-0">
-                <input asp-for="Rating" type="radio" id="rating-@option.Value" value="@option.Value"> @option.Text
+                <input asp-for="Rating" type="radio" id="rating-@option.Value" value="@option.Value"> 
+                <label for="rating-@option.Value">@option.Text</label>
             </li>
         }
         </ul>
