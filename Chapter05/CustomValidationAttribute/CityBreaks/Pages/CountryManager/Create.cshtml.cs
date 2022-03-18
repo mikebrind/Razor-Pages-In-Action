@@ -16,12 +16,6 @@ namespace CityBreaks.Pages.CountryManager
 
         public IActionResult OnPost()
         {
-            if (!string.IsNullOrWhiteSpace(Input.CountryName) &&
-                !string.IsNullOrWhiteSpace(Input.CountryCode) &&
-                Input.CountryName.ToLower().First() != Input.CountryCode.ToLower().First())
-            {
-                ModelState.AddModelError("Input.CountryName", "The first letters of the name and code must match");
-            }
             if (ModelState.IsValid)
             {
                 CountryCode = Input.CountryCode;
