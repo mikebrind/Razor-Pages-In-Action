@@ -8,7 +8,7 @@
 @foreach (var property in Model.City.Properties)
 {
     <div class="mb-3">
-        <h5 data-id="@property.Id"
+        <h5 role="button" data-id="@property.Id"
         data-bs-toggle="modal"
         data-bs-target="#property-modal">
             @property.Name
@@ -43,12 +43,10 @@
     });
 
     document.querySelector('.btn-success').addEventListener('click', () => {
-        const token = document.querySelector('[name="__RequestVerificationToken"]').value;
         const data = {
                 startdate: document.getElementById('StartDate').value,
                 enddate: document.getElementById('EndDate').value,
                 numberofguests: document.getElementById('NumberOfGuests').value,
-                __requestverificationtoken: token,
                 dayrate: document.getElementById('Property_DayRate').value
             };
             fetch('?handler=booking', {

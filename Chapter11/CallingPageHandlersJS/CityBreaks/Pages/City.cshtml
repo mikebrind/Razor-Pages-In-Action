@@ -1,4 +1,4 @@
-﻿@page "{name}"
+@page "{name}"
 @model CityBreaks.Pages.CityModel
 @{
     ViewData["Title"] = $"{Model.City?.Name} Details";
@@ -7,7 +7,7 @@
 @foreach (var property in Model.City.Properties)
 {
     <div class="mb-3">
-        <h5 data-id="@property.Id"
+        <h5 role="button" data-id="@property.Id"
         data-bs-toggle="modal"
         data-bs-target="#property-modal">
             @property.Name
