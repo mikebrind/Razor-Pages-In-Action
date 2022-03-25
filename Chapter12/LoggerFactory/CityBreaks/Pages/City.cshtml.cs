@@ -11,16 +11,16 @@ public class CityModel : PageModel
 {
     private readonly ICityService _cityService;
     private readonly IPropertyService _propertyService;
-    private readonly ILogger _logger;
+    private readonly ILoggerFactory _loggerFactory;
 
-public CityModel(ICityService cityService, 
-    IPropertyService propertyService, 
-    ILoggerFactory loggerFactory)
-{
-    _cityService = cityService;
-    _propertyService = propertyService;
-    _logger = loggerFactory.CreateLogger("City Page OnGetAsync");
-}
+    public CityModel(ICityService cityService,
+        IPropertyService propertyService,
+        ILoggerFactory loggerFactory)
+    {
+        _cityService = cityService;
+        _propertyService = propertyService;
+        _loggerFactory = loggerFactory;
+    }
 
     [BindProperty(SupportsGet = true)]
     public string Name { get; set; }
@@ -28,13 +28,14 @@ public CityModel(ICityService cityService,
 
     public async Task<IActionResult> OnGetAsync()
     {
+        var logger = _loggerFactory.CreateLogger("City Page OnGetAsync");
         City = await _cityService.GetByNameAsync(Name);
         if (City == null)
         {
-            _logger.LogWarning(404, "City \"{name}\" not found", Name);
+            logger.LogWarning(404, "City \"{name}\" not found", Name);
             return NotFound();
         }
-        _logger.LogInformation("City \"{name}\"  found", Name);
+        logger.LogInformation("City \"{name}\"  found", Name);
         return Page();
     }
 
@@ -45,11 +46,11 @@ public CityModel(ICityService cityService,
         return Partial("_PropertyDetailsPartial", model);
     }
 
-    public JsonResult OnPostBooking([FromBody]BookingInputModel model)
+    public JsonResult OnPostBooking([FromBody] BookingInputModel model)
     {
         var numberOfDays = (int)(model.EndDate.Value - model.StartDate.Value).TotalDays;
         var totalCost = numberOfDays * model.Property.DayRate * model.NumberOfGuests;
-        var result = new  { TotalCost = totalCost };
+        var result = new { TotalCost = totalCost };
         return new JsonResult(result);
     }
 

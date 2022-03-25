@@ -5,17 +5,16 @@ namespace CityBreaks.Logging
 
     public class EmailLoggerProvider : ILoggerProvider
     {
-        private readonly IServiceProvider _serviceProvider;
+        private readonly IEmailSender _emailService;
 
-        public EmailLoggerProvider(IServiceProvider serviceProvider)
+        public EmailLoggerProvider(IEmailSender emailService)
         {
-            _serviceProvider = serviceProvider;
+            _emailService = emailService;
         }
 
         public ILogger CreateLogger(string categoryName)
         {
-            var emailService = _serviceProvider.GetRequiredService<IEmailSender>();
-            return new EmailLogger(emailService);
+            return new EmailLogger(_emailService);
         }
         public void Dispose() { }
     }
