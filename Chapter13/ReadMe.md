@@ -12,3 +12,4 @@ This chapter covers
 ## Source Code 
 
 - [Password Hasher](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter13/PasswordHasherDemo) (§ 13.2.2)
+- [Cross Site Scripting](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter13/AngleSharp) (§ 13.4.2)
