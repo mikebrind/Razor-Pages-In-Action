@@ -1,0 +1,35 @@
+﻿@page
+@model CityBreaks.Pages.ClaimsManager.AssignModel
+@{
+}
+<h4>Assign Claim To User</h4>
+
+<div class="row">
+    <div class="col-md-8">
+        <form method="post">
+              <div class="form-group mb-3">
+                <label asp-for="SelectedUserId" class="control-label"></label>
+                <select asp-for="SelectedUserId" asp-items="Model.Users" class="form-control">
+                    <option></option>
+                </select>
+                <span asp-validation-for="SelectedUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="ClaimType" class="control-label"></label>
+               <input asp-for="ClaimType" class="form-control" />
+                <span asp-validation-for="ClaimType" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="ClaimValue" class="control-label"></label>
+               <input asp-for="ClaimValue" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Assign" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+<partial name="_ValidationScriptsPartial" />
+}

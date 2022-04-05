@@ -1,0 +1,10 @@
+﻿@page
+@model CityBreaks.Pages.CityManager.IndexModel
+@{
+}
+@if(TempData["Name"] != null){
+    <div class="col-6">
+        <h3>@TempData["Name"]</h3>
+        <img src="/images/cities/@TempData["Photo"]" class="img-fluid" alt="@TempData["Name"]"/>
+    </div>
+}
