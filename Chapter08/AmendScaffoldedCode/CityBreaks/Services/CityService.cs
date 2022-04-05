@@ -18,6 +18,7 @@ namespace CityBreaks.Services
 
         public async Task<City> GetByNameAsync(string name)
         {
+			name = name.Replace("-"," ");
             return await _context.Cities
                 .Include(c => c.Country)
                 .Include(c => c.Properties.Where(p => p.AvailableFrom < DateTime.Now))
