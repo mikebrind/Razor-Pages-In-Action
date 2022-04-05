@@ -5,7 +5,7 @@
 }
 @if (Model.Result != null)
 {
-    <div class="alert alert-@(Model.Result == "Success" ? "success" : "danger") col-4">@Model.Result</div>
+    <div class="alert alert-@(Model.Result == "Failed" ? "danger" : "success") col-4">@Model.Result</div>
 }
 <form method="post" class="col-4">
     <input asp-for="HashedPassword" value="@Model.HashedPassword" />

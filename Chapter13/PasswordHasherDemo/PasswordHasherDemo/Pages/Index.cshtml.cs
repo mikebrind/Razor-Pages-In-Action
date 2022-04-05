@@ -28,6 +28,7 @@ public class IndexModel : PageModel
             if (string.IsNullOrEmpty(HashedPassword))
             {
                 HashedPassword = _passwordHasher.HashPassword(user, Password);
+                Result = "Password has been hashed. Please sign in.";
             }
             else
             {
