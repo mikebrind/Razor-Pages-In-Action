@@ -16,3 +16,5 @@ This chapter covers
 - [AppSettings](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter14/AppSettings)
 - [Strongly Typed AppSettings](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter14/AppSettingsStronglyTyped)
 - [Using the Options Pattern](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter14/AppSettingsStronglyTypedOptions)
+- [The Cache Tag Helper](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter14/CacheTagHelper)
+- [In-memory Cache](https://github.com/mikebrind/Razor-Pages-In-Action/tree/main/Chapter14/InMemoryCache)
