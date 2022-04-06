@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 
 namespace CityBreaks.Pages;
-
-
 public class CityModel : PageModel
 {
     private readonly ICityService _cityService;
@@ -29,14 +27,16 @@ public class CityModel : PageModel
 
     public async Task<IActionResult> OnGetAsync()
     {
-        City = await _cityService.GetByNameAsync(Name);
-        if (City == null)
+        var cities = await _cityService.GetCityNamesAsync();
+        if (cities.Contains(Name.ToLowerInvariant().Replace("-", " ")))
         {
-            _logger.LogWarning("City \"{name}\" not found", Name);
+            City = await _cityService.GetByNameAsync(Name);
+            return Page();
+        }
+        else
+        {
             return NotFound();
         }
-        _logger.LogInformation("City \"{name}\"  found", Name);
-        return Page();
     }
 
     public async Task<PartialViewResult> OnGetPropertyDetails(int id)

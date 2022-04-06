@@ -3,7 +3,6 @@ using CityBreaks.AuthorizationRequirements;
 using CityBreaks.CustomRouteContraints;
 using CityBreaks.Data;
 using CityBreaks.Logging;
-using CityBreaks.Middleware;
 using CityBreaks.Models;
 using CityBreaks.PageRouteModelConventions;
 using CityBreaks.ParameterTransformers;
@@ -104,7 +103,6 @@ try
     builder.Services.AddSingleton<IAuthorizationHandler, PropertyAuthorizationHandler>();
     builder.Services.AddSingleton<IBookingService, BookingService>();
     builder.Services.AddTransient<ILoggerProvider, EmailLoggerProvider>();
-    builder.Services.AddScoped<CityCheckMiddleware>();
     var app = builder.Build();
     
     // Configure the HTTP request pipeline.
@@ -122,7 +120,6 @@ try
     //app.UseSerilogRequestLogging();
     
     app.UseRouting();
-    app.UseMiddleware<CityCheckMiddleware>();
     app.UseAuthentication();
     app.UseAuthorization();
 

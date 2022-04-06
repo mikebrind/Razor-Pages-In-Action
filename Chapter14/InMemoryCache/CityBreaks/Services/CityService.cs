@@ -63,7 +63,7 @@ namespace CityBreaks.Services
                 _logger.LogInformation("Cities retrieved from memory cache");
                 return cityNames;
             }
-            _cache.Set(nameof(GetCityNamesAsync), await _context.Cities.Select(c => c.Name).ToListAsync());
+            _cache.Set(nameof(GetCityNamesAsync), await _context.Cities.Select(c => c.Name.ToLowerInvariant()).ToListAsync());
             _logger.LogInformation("Cache empty. Storing cities in memory cache");
             return _cache.Get<List<string>>(nameof(GetCityNamesAsync)); 
         }
