@@ -6,6 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IPasswordHasher<User>, PasswordHasher<User>>();
+builder.Services.Configure<PasswordHasherOptions>(options =>
+{
+    options.IterationCount = 310000;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
