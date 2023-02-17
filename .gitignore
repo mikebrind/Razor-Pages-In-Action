@@ -350,3 +350,5 @@ MigrationBackup/
 .ionide/
 
 *.eml
+*.db-wal
+*.db-shm
